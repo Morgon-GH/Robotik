@@ -66,6 +66,8 @@ class Robotics_jomo():
 
     def __init__(self, makeredo=True, wheel_diameter=45, axle_track=100, driveports=(Port.A, Port.D), 
     sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}):
+        if makeredo==True:
+            do=RedoINTE_jomo()
         self.a=Motor_jomo(driveports[0])
         self.b=Motor_jomo(driveports[1])
         self.DriveBase_jomo(self.a, self.b, wheel_diameter, axle_track)

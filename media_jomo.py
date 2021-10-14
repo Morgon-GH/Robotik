@@ -28,7 +28,11 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 
 class Picture_jomo():
     #fill
+    def __init__(self, picture):
+        ##
 
 
 class Audio_jomo():
+    def __init__(self, sound):
+        ##
     #fill
