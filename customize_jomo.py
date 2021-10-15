@@ -53,3 +53,13 @@ class Customclass_jomo():
 
     def reset_ns():
         # 
+
+
+class Attribute_jomo(Customclass_jomo):
+    def set_(self):
+        ##
+        pass
+
+    def get_(self):
+        ##
+        pass
