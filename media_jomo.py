@@ -7,6 +7,7 @@
 ##    Author: Johannes und Moritz
 ##    Language: Micropython (Python) v 2.0
 ##    Important comments: This program requires LEGO EV3 MicroPython v2.0 or higher.
+##                        Garbage Collector might needed.
 ##    File: 
 ##         Program ( ) 
 ##         Module  (x)
@@ -23,16 +24,71 @@ from pybricks.tools import wait, StopWatch, DataLog
 from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile 
 
+import gc
+
 ## 3) Moduling Zone-----------------------------------------------------------------------------------------------------
 ##    
 
-class Picture_jomo():
+class Picturefile_jomo():
     #fill
-    def __init__(self, picture):
+    def __init__(self, picture=' ', picture_=False):
+        if sound_=True:
+            self.picture=picture
+        else:
+            self.picture=' '
+        ##
+    
+    def imp(self):
         ##
 
-
-class Audio_jomo():
-    def __init__(self, sound):
+    def exp(self):
         ##
-    #fill
+
+    def change(self, picture=' ', picture_=True):
+        ##
+
+    def __del__(self):
+        del self
+        if gc:
+            gc.collect()
+            print(b)
+            gc = None
+        else:
+            pass
+        except Exception as e:
+            pass
+        ##
+        ##
+
+    def reset_ns():
+        ## destroys all existing objects
+
+
+class Audiofile_jomo():
+    def __init__(self, sound=' ', sound_=False):
+        if sound_=True:
+            self.sound=sound
+        else:
+            self.sound=' '
+        ##
+
+    def play(self):
+        ##
+    
+    def change(self, sound=' ', sound_=True):
+        ##
+
+    def __del__(self):
+        del self
+        if gc:
+            gc.collect()
+            print(b)
+            gc = None
+        else:
+            pass
+        except Exception as e:
+            pass
+        ##
+
+    def reset_ns():
+        ## destroys all existing objects

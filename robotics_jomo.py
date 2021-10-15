@@ -119,3 +119,27 @@ class Robotics_jomo():
             self.s4=UltrasonicSensor_jomo(Port.S4)
         else:
             pass
+
+    def redo_(self, redo=1):
+        if redo==0:
+            do.sdo()
+        elif redo==1:
+            do.redo1()
+        elif redo==1:
+            do.redo1()
+        elif redo==1:
+            do.redo1()
+        elif redo==1:
+            do.redo1()
+        elif redo==1:
+            do.redo1()
+        elif redo==1:
+            do.redo1()
+        elif redo==1:
+            do.redo1()
+        elif redo==1:
+            do.redo1()
+        elif redo==1:
+            do.redo1()
+        elif redo==1:
+            do.redo1()
