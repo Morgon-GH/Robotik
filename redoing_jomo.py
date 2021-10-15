@@ -23,10 +23,12 @@ from pybricks.tools import wait, StopWatch, DataLog
 from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile 
 
+import gc
+
 ## 3) Moduling Zone-----------------------------------------------------------------------------------------------------
 ##    
 
-class RedoINTE_jomo():
+class Redoing_jomo(Customclass_jomo):
 
     def __init__(self):
         pass

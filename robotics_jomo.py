@@ -23,46 +23,53 @@ from pybricks.tools import wait, StopWatch, DataLog
 from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile 
 
+import gc
+
 ## 3) Moduling Zone-----------------------------------------------------------------------------------------------------
 ##    
 
-class Robotics_jomo():
+class Robotics_jomo(Customclass_jomo):
     '''Modul für eine Zentrale Robotersteuerung. Standartimports in der üblichen Ausführlichkeit benötigt.
     Preferences nutzen große Räder, im Abstand von 10cm. 
     '''
 
     #überschreiben
-    class TouchSensor_jomo(TouchSensor):
+    class TouchSensor_jomo(TouchSensor, Customclass_jomo):
         #fill
     
 
-    class ColorSensor_jomo(ColorSensor):
+    class ColorSensor_jomo(ColorSensor, Customclass_jomo):
         #fill
     
 
-    class InfraredSensor_jomo(InfraredSensor):
+    class InfraredSensor_jomo(InfraredSensor, Customclass_jomo):
         #fill
     
 
-    class UltrasonicSensor_jomo(UltrasonicSensor):
+    class UltrasonicSensor_jomo(UltrasonicSensor, Customclass_jomo):
         #fill
     
 
-    class GyroSensor_jomo(GyroSensor):
+    class GyroSensor_jomo(GyroSensor, Customclass_jomo):
         #fill
 
     
-    class DriveBase_jomo(DriveBase):
+    class DriveBase_jomo(DriveBase, Customclass_jomo):
         #fill
     
 
-    class Motor_jomo(Motor):
+    class Motor_jomo(Motor, Customclass_jomo):
         #fill
     
 
+    #neue, eigene Klassen
     class Extension_jomo(Motor_jomo):
         #fill
     
+
+    class Message_jomo(Customclass_jomo):
+        #fill
+
 
     def __init__(self, makeredo=True, wheel_diameter=45, axle_track=100, driveports=(Port.A, Port.D), 
     sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}):
@@ -125,21 +132,21 @@ class Robotics_jomo():
             do.sdo()
         elif redo==1:
             do.redo1()
-        elif redo==1:
-            do.redo1()
-        elif redo==1:
-            do.redo1()
-        elif redo==1:
-            do.redo1()
-        elif redo==1:
-            do.redo1()
-        elif redo==1:
-            do.redo1()
-        elif redo==1:
-            do.redo1()
-        elif redo==1:
-            do.redo1()
-        elif redo==1:
-            do.redo1()
-        elif redo==1:
-            do.redo1()
+        elif redo==2:
+            do.redo2()
+        elif redo==3:
+            do.redo3()
+        elif redo==4:
+            do.redo4()
+        elif redo==5:
+            do.redo5()
+        elif redo==6:
+            do.redo6()
+        elif redo==7:
+            do.redo7()
+        elif redo==8:
+            do.redo8()
+        elif redo==9:
+            do.redo9()
+        elif redo==10:
+            do.redo10()

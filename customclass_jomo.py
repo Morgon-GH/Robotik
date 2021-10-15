@@ -7,7 +7,6 @@
 ##    Author: Johannes und Moritz
 ##    Language: Micropython (Python) v 2.0
 ##    Important comments: This program requires LEGO EV3 MicroPython v2.0 or higher.
-##                        Garbage Collector might needed.
 ##    File: 
 ##         Program ( ) 
 ##         Module  (x)
@@ -29,54 +28,15 @@ import gc
 ## 3) Moduling Zone-----------------------------------------------------------------------------------------------------
 ##    
 
-class Picturefile_jomo(Customclass_jomo):
-    #fill
-    def __init__(self, picture=' ', picture_=False):
-        if sound_=True:
-            self.picture=picture
-        else:
-            self.picture=' '
-        ##
-    
-    def imp(self):
-        ##
+class Customclass_jomo():
+    '''Superclass for all classes of this module'''
 
-    def exp(self):
-        ##
+    def __init__(self):
+        #
 
-    def change(self, picture=' ', picture_=True):
-        ##
-
-    def __del__(self):
-        del self
-        if gc:
-            gc.collect()
-            print(b)
-            gc = None
-        else:
-            pass
-        except Exception as e:
-            pass
-        ##
-        ##
-
-    def reset_ns():
-        ## destroys all existing objects
-
-
-class Audiofile_jomo(Customclass_jomo):
-    def __init__(self, sound=' ', sound_=False):
-        if sound_=True:
-            self.sound=sound
-        else:
-            self.sound=' '
-        ##
-
-    def play(self):
-        ##
-    
-    def change(self, sound=' ', sound_=True):
-        ##
+    def reinit(self):
+        self.__init__()
+        #
 
     def __del__(self):
         del self
@@ -92,8 +52,4 @@ class Audiofile_jomo(Customclass_jomo):
         ##
 
     def reset_ns():
-        ## destroys all existing objects
-
-    
-    class Screensetter_jomo(Customclass_jomo):
-        #
+        # 
