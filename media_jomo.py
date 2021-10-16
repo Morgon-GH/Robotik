@@ -44,25 +44,6 @@ class Picturefile_jomo(Customclass_jomo):
     def exp(self):
         ##
 
-    def change(self, picture=' ', picture_=True):
-        ##
-
-    def __del__(self):
-        del self
-        if gc:
-            gc.collect()
-            print(b)
-            gc = None
-        else:
-            pass
-        except Exception as e:
-            pass
-        ##
-        ##
-
-    def reset_ns():
-        ## destroys all existing objects
-
 
 class Audiofile_jomo(Customclass_jomo):
     def __init__(self, sound=' ', sound_=False):
@@ -74,26 +55,7 @@ class Audiofile_jomo(Customclass_jomo):
 
     def play(self):
         ##
-    
-    def change(self, sound=' ', sound_=True):
-        ##
-
-    def __del__(self):
-        del self
-        gc=Garbage()
-        if gc:
-            gc.collect()
-            print(b)
-            gc = None
-        else:
-            pass
-        except Exception as e:
-            pass
-        ##
-
-    def reset_ns():
-        ## destroys all existing objects
 
     
-    class Screensetter_jomo(Customclass_jomo):
-        #
+class Screensetter_jomo(Customclass_jomo):
+    #

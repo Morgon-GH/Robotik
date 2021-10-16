@@ -31,19 +31,26 @@ import gc
 class Customclass_jomo():
     '''Superclass for all classes of this module'''
 
-    def __init__(self):
+    def __init__(self, developement=False):
+        if developement=True:
+            self._printers=True
         #
 
-    def reinit(self):
+    def _reinit(self):
         self.__init__()
         #
+
+    def _printer(self, toprint='  '):
+        if self._printers==True:
+            print(toprint)
+        else: 
+            pass
 
     def __del__(self):
         del self
         gc=Garbage()
         if gc:
             gc.collect()
-            print(b)
             gc = None
         else:
             pass
@@ -56,10 +63,23 @@ class Customclass_jomo():
 
 
 class Attribute_jomo(Customclass_jomo):
-    def set_(self):
-        ##
-        pass
+    def __init__(self, value, kind='int'):
+        '''kind can be: 'int', 'char', 'string', 'float', 'double', 'long', 'port', 'stop',
+         'direction', 'color', 'button'
+        '''
+        self.kinds=['int', 'char', 'string', 'float', 'double', 'long', 'port', 'stop',
+         'direction', 'color', 'button']
+        self.value=value
+        if kind==self.kinds:
+            self.kind=kind
+        else:
+            del self
 
-    def get_(self):
-        ##
-        pass
+    def set_(self, value):
+        self.value=value
+
+    def get_val(self):
+        return self.value
+
+    def get_kin(self):
+        return self.kind
