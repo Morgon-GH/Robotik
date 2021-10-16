@@ -11,8 +11,8 @@
 ##    File: 
 ##         Program ( ) 
 ##         Module  (x)
-##    Version: 1.0.1
-##    Click "Open user guide" on the EV3 extension tab for more information. look if own modules are needed.
+##    Version: 1.0.13 (Version.release.commit, reset per each new version and release)
+##    Look for the documentation. If there are questions, write to the Support.
 
 ## 2) Import Zone-------------------------------------------------------------------------------------------------------
 ##    
