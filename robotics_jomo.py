@@ -109,13 +109,21 @@ class Robotics_jomo(Customclass_jomo):
         ## send Nachricht senden
 
 
-    def __init__(self, makeredo=True, wheel_diameter=45, axle_track=100, driveports=(Port.A, Port.D), 
-    sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}):
+    def __init__(self, makeredo=True, wheel_diameter=45, axle_track=100,
+     driveports=(Port.A, Port.D), extports=(Port.B, Port.C),
+     sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}):
         if makeredo==True:
             do=RedoINTE_jomo()
-        self.a=Motor_jomo(driveports[0])
-        self.b=Motor_jomo(driveports[1])
+        if driveports[0]!==' ':
+            self.a=Motor_jomo(driveports[0])
+        if driveports[1]!==' ':
+            self.b=Motor_jomo(driveports[1])
+        if extports[0]!==' ':
+            self.c=Extension_jomo(extports[0])
+        if extports[1]!==' ':
+            self.d=Extension_jomo(extports[1])
         self.DriveBase_jomo(self.a, self.b, wheel_diameter, axle_track)
+
         if sensor[0]=='gyro': 
             self.s1=GyroSensor_jomo(Port.S1)
         elif sensor[0]=='touch':
