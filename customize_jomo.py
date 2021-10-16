@@ -64,10 +64,10 @@ class Customclass_jomo():
 
 class Attribute_jomo(Customclass_jomo):
     def __init__(self, value, kind='int'):
-        '''kind can be: 'int', 'char', 'string', 'float', 'double', 'long', 'port', 'stop',
+        '''kind can be: 'int', 'bool', 'char', 'string', 'float', 'double', 'long', 'port', 'stop',
          'direction', 'color', 'button'
         '''
-        self.kinds=['int', 'char', 'string', 'float', 'double', 'long', 'port', 'stop',
+        self.kinds=['int', 'bool', 'char', 'string', 'float', 'double', 'long', 'port', 'stop',
          'direction', 'color', 'button']
         self.value=value
         if kind==self.kinds:

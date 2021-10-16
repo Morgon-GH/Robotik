@@ -1,0 +1,3 @@
+-Kann man variablen werte wie ports oder so übergeben? [fragen, wenns niemand weiß testen]
+-Wenn ich in einem destrutor __del__ "del self" verwende, wird damit der destruktor __del__ selbst ausgeführt? [fragen, sonst mit sicherung testen]
+-Wie kann ich alle objekte einer klasse zerstören bzw. resetten? [fragen, sonst iwi testen oder weglassen]

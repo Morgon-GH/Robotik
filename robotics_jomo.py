@@ -56,6 +56,21 @@ class Robotics_jomo(Customclass_jomo):
     
     class DriveBase_jomo(DriveBase, Customclass_jomo):
         #fill
+
+        def follow_line(self, line_color=Color.BLACK):
+            ##
+
+        ## Fahre bis Ultraschallsensor diesunddas..
+
+        ## Fahre bis Farbsensor diesunddas..
+
+        ## Fahre bis Hell/Dunkelsensor diesunddas..
+
+        ## Folge der Linie mit der Farbe 'farbe' bis Sensor diesunddas..
+
+        ## Beschleunige diesunddas
+
+        ## makecourse für Abweichung des Winkels bei Gyro, korrigiert Kurs
     
 
     class Motor_jomo(Motor, Customclass_jomo):
@@ -69,6 +84,28 @@ class Robotics_jomo(Customclass_jomo):
 
     class Message_jomo(Customclass_jomo):
         #fill
+
+        ## connect stelle verbindung her
+
+        ## code_messg1 messagecodierer 1
+
+        ## decode_messg1 messagedecodierer 1
+
+        ## code_messg2 messagecodierer 2
+
+        ## decode_messg2 messagedecodierer 2
+
+        ## code_messg3 messagecodierer 3
+
+        ## decode_messg3 messagedecodierer 3
+        
+        ## code_messg4 messagecodierer 4
+
+        ## decode_messg4 messagedecodierer 4
+
+        ## receive Nachricht empfangen
+
+        ## send Nachricht senden
 
 
     def __init__(self, makeredo=True, wheel_diameter=45, axle_track=100, driveports=(Port.A, Port.D), 

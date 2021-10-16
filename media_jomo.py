@@ -58,4 +58,9 @@ class Audiofile_jomo(Customclass_jomo):
 
     
 class Screensetter_jomo(Customclass_jomo):
-    #
+
+    def set_surround(self, headborder=True, downborder=False, up=False, down=False):
+        ##
+
+    def inc(self, elment):
+        ##
