@@ -26,4 +26,3 @@ while True:
         ev3.speaker.beep()
         motor.run_angle(100,10)
         motor.run_angle(100,-10)
-        
