@@ -14,22 +14,16 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 
 # Create your objects here.
 ev3 = EV3Brick()
-color = ColorSensor(Port.S2)
-<<<<<<< Updated upstream
-motor = Motor(B)
-=======
->>>>>>> Stashed changes
+
 
 # Write your program here.
-while True:
-    ambient=color.ambient()
-    ev3.screen.clear()
-    ev3.screen.print(ambient)
-    if ambient < 11:
-<<<<<<< Updated upstream
-        ev3.speaker.beep()
-        motor.run_angle(100,10)
-        motor.run_angle(100,-10)
-=======
-        ev3.speaker.beep()
->>>>>>> Stashed changes
+ev3.speaker.beep()
+wait(299)
+ev3.speaker.beep()
+wait(299)
+ev3.speaker.beep()
+wait(299)
+ev3.speaker.beep()
+wait(299)
+ev3.speaker.beep()
+wait(299)
