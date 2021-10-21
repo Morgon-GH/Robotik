@@ -24,7 +24,11 @@ from pybricks.tools import wait, StopWatch, DataLog
 from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile 
 
+# Für Customclass&Alle
 import gc
+
+# Für Relatio
+import math
 
 ## 3) Moduling Zone-----------------------------------------------------------------------------------------------------
 ##    
@@ -84,3 +88,34 @@ class Attribute_jomo(Customclass_jomo):
 
     def get_kin(self):
         return self.kind
+
+    
+class Relatio(Customclass_jomo):
+    def pol_lgs(self, vars_=10, vars=[1, 2, 3, 4, 0, 4, 3, 1, 3, 2]):
+        self.var=[]
+        ##
+
+    def mitternachtsformel(self, abs=0, lin=0, quad=0):
+        wurzel=0
+        if lin**2-4*abs*quad>0:
+            wurzel=math.sqrt(lin**2-4*abs*quad)
+            lsg1=(-lin+wurzel)/(2*quad)
+            lsg2=(-lin-wurzel)/(2*quad)
+        elif lin**2-4*abs*quad=0:
+            wurzel=0
+            lsg1=(-lin)/(2*quad)
+            lsg2=(-lin)/(2*quad)
+        else:
+            lsg1='None'
+            lsg2='None'
+        return (lsg1, lsg2)
+
+    def pqFormel(self, abs=0, lin=0, quad_pos=True):
+        quad=0
+        if quad_pos==True:
+            quad=1
+        elif quad_pos==False:
+            quad=-1
+        else:
+            break
+        self.mitternachtsformel(abs, lin, quad)
