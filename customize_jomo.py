@@ -2,6 +2,8 @@
 ##    
 #!/usr/bin/env pybricks-micropython
 
+
+
 ## 1) Commentation Zone-------------------------------------------------------------------------------------------------
 ##    
 ##    Author: Johannes und Moritz
@@ -13,6 +15,8 @@
 ##         Module  (x)
 ##    Version: 1.0.13 (Version.release.commit, reset per each new version and release)
 ##    Look for the documentation. If there are questions, write to the Support.
+
+
 
 ## 2) Import Zone-------------------------------------------------------------------------------------------------------
 ##    
@@ -27,8 +31,7 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 # Für Customclass&Alle
 import gc
 
-# Für Relatio
-import math
+
 
 ## 3) Moduling Zone-----------------------------------------------------------------------------------------------------
 ##    
@@ -39,6 +42,8 @@ class Customclass_jomo():
     def __init__(self, developement=False):
         if developement=True:
             self._printers=True
+        else:
+            pass
         #
 
     def _reinit(self):
@@ -64,10 +69,11 @@ class Customclass_jomo():
         ##
 
     def reset_ns():
-        # 
+        # has to collect all objects of the kind Customclass_jomo
 
 
 class Attribute_jomo(Customclass_jomo):
+    # Not used now; no usage in time but might useful in other releases and for developers
     def __init__(self, value, kind='int'):
         '''kind can be: 'int', 'bool', 'char', 'string', 'float', 'double', 'long', 'port', 'stop',
          'direction', 'color', 'button'

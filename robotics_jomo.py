@@ -2,6 +2,8 @@
 ##    
 #!/usr/bin/env pybricks-micropython
 
+
+
 ## 1) Commentation Zone-------------------------------------------------------------------------------------------------
 ##    
 ##    Author: Johannes und Moritz
@@ -13,6 +15,8 @@
 ##         Module  (x)
 ##    Version: 1.0.13 (Version.release.commit, reset per each new version and release)
 ##    Look for the documentation. If there are questions, write to the Support.
+
+
 
 ## 2) Import Zone-------------------------------------------------------------------------------------------------------
 ##    
@@ -26,7 +30,9 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 
 import gc
 
-## 3) Moduling Zone-----------------------------------------------------------------------------------------------------
+
+
+## 3) Moduling Zone--------------------------------------------------------------------------------------------------
 ##    
 
 class Robotics_jomo(Customclass_jomo):
@@ -52,6 +58,10 @@ class Robotics_jomo(Customclass_jomo):
     
 
     class GyroSensor_jomo(GyroSensor, Customclass_jomo):
+        #fill    
+
+
+    class Motor_jomo(Motor, Customclass_jomo):
         #fill
 
     
@@ -74,12 +84,11 @@ class Robotics_jomo(Customclass_jomo):
         ## makecourse für Abweichung des Winkels bei Gyro, korrigiert Kurs
     
 
-    class Motor_jomo(Motor, Customclass_jomo):
-        #fill
-    
-
     #neue, eigene Klassen
     class Extension_jomo(Motor_jomo):
+        #fill
+
+    class BgExtension_jomo(Customclass_jomo):
         #fill
     
 
@@ -196,3 +205,9 @@ class Robotics_jomo(Customclass_jomo):
             do.redo9()
         elif redo==10:
             do.redo10()
+
+    def drive_speed(self, speed=100):
+        pass
+
+    def drive_angle(self, angle=360, angleset=False, angleset=0):
+        pass

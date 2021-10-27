@@ -2,6 +2,8 @@
 ##    
 #!/usr/bin/env pybricks-micropython
 
+
+
 ## 1) Commentation Zone-------------------------------------------------------------------------------------------------
 ##    
 ##    Author: Johannes und Moritz
@@ -14,6 +16,8 @@
 ##    Version: 1.0.13 (Version.release.commit, reset per each new version and release)
 ##    Look for the documentation. If there are questions, write to the Support.
 
+
+
 ## 2) Import Zone-------------------------------------------------------------------------------------------------------
 ##    
 
@@ -25,6 +29,8 @@ from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile 
 
 import gc
+
+
 
 ## 3) Moduling Zone-----------------------------------------------------------------------------------------------------
 ##    
@@ -58,6 +64,8 @@ class Audiofile_jomo(Customclass_jomo):
 
     
 class Screensetter_jomo(Customclass_jomo):
+    def __init__(self):
+        pass
 
     def set_surround(self, headborder=True, downborder=False, up=False, down=False):
         ##
