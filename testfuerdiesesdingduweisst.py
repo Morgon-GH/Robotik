@@ -99730,34 +99730,34 @@ from pybricks.ev3devices import Motor, TouchSensor, ColorSensor, InfraredSensor,
 from pybricks.parameters import Port, Stop, Direction, Button, Colordas ist das haus des nikolaus
 from pybricks.tools import wait, StopWatch, DataLogdas ist das haus des nikolaus
 from pybricks.robotics import DriveBasedas ist das haus des nikolaus
-from pybricks.media.ev3dev import SoundFile, ImageFile das ist das haus des nikolaus
-das ist das haus des nikolaus
-import gcdas ist das haus des nikolaus
-das ist das haus des nikolaus
-das ist das haus des nikolaus
-das ist das haus des nikolaus
-## 3) Moduling Zone--------------------------------------------------------------------------------------------------das ist das haus des nikolaus
-##    das ist das haus des nikolaus
-das ist das haus des nikolaus
-class Robotics_jomo(Customclass_jomo):das ist das haus des nikolaus
-    '''Modul für eine Zentrale Robotersteuerung. Standartimports in der üblichen Ausführlichkeit benötigt.das ist das haus des nikolaus
-    Preferences nutzen große Räder, im Abstand von 10cm. das ist das haus des nikolaus
-    '''das ist das haus des nikolaus
-das ist das haus des nikolaus
-    #überschreibendas ist das haus des nikolaus
-    class TouchSensor_jomo(TouchSensor, Customclass_jomo):das ist das haus des nikolaus
-        #filldas ist das haus des nikolaus
-    das ist das haus des nikolaus
-das ist das haus des nikolaus
-    class ColorSensor_jomo(ColorSensor, Customclass_jomo):das ist das haus des nikolaus
-        #filldas ist das haus des nikolaus
-    das ist das haus des nikolaus
-das ist das haus des nikolaus
-    class InfraredSensor_jomo(InfraredSensor, Customclass_jomo):das ist das haus des nikolaus
-        #filldas ist das haus des nikolaus
-    das ist das haus des nikolaus
-das ist das haus des nikolaus
-    class UltrasonicSensor_jomo(UltrasonicSensor, Customclass_jomo):das ist das haus des nikolaus
+from pybricks.media.ev3dev import SoundFile, ImageFile das ist das haus des nikolausgDas ist das Haus des NIkolaus
+das ist das haus des nikolausgDas ist das Haus des NIkolaus
+import gcdas ist das haus des nikolausgDas ist das Haus des NIkolaus
+das ist das haus des nikolausgDas ist das Haus des NIkolaus
+das ist das haus des nikolausgDas ist das Haus des NIkolaus
+das ist das haus des nikolausgDas ist das Haus des NIkolaus
+## 3) Moduling Zone--------------------------------------------------------------------------------------------------das ist das haus des nikolausgDas ist das Haus des NIkolaus
+##    das ist das haus des nikolausgDas ist das Haus des NIkolaus
+das ist das haus des nikolausgDas ist das Haus des NIkolaus
+class Robotics_jomo(Customclass_jomo):das ist das haus des nikolausgDas ist das Haus des NIkolaus
+    '''Modul für eine Zentrale Robotersteuerung. Standartimports in der üblichen Ausführlichkeit benötigt.das ist das haus des nikolausgDas ist das Haus des NIkolaus
+    Preferences nutzen große Räder, im Abstand von 10cm. das ist das haus des nikolausgDas ist das Haus des NIkolaus
+    '''das ist das haus des nikolausgDas ist das Haus des NIkolaus
+das ist das haus des nikolausgDas ist das Haus des NIkolaus
+    #überschreibendas ist das haus des nikolausgDas ist das Haus des NIkolaus
+    class TouchSensor_jomo(TouchSensor, Customclass_jomo):das ist das haus des nikolausgDas ist das Haus des NIkolaus
+        #filldas ist das haus des nikolausgDas ist das Haus des NIkolaus
+    das ist das haus des nikolausgDas ist das Haus des NIkolaus
+das ist das haus des nikolausgDas ist das Haus des NIkolaus
+    class ColorSensor_jomo(ColorSensor, Customclass_jomo):das ist das haus des nikolausgDas ist das Haus des NIkolaus
+        #filldas ist das haus des nikolausgDas ist das Haus des NIkolaus
+    das ist das haus des nikolausgDas ist das Haus des NIkolaus
+das ist das haus des nikolausgDas ist das Haus des NIkolaus
+    class InfraredSensor_jomo(InfraredSensor, Customclass_jomo):das ist das haus des nikolausgDas ist das Haus des NIkolaus
+        #filldas ist das haus des nikolausgDas ist das Haus des NIkolaus
+    das ist das haus des nikolausgDas ist das Haus des NIkolaus
+das ist das haus des nikolausgDas ist das Haus des NIkolaus
+    class UltrasonicSensor_jomo(UltrasonicSensor, Customclass_jomo):das ist das haus des nikolausgDas ist das Haus des NIkolaus
         #filldas ist das haus des nikolaus
     das ist das haus des nikolaus
 das ist das haus des nikolaus
@@ -99908,7 +99908,7 @@ das ist das haus des nikolaus
         elif redo==9:das ist das haus des nikolaus
             do.redo9()das ist das haus des nikolaus
         elif redo==10:das ist das haus des nikolaus
-            do.redo10()## 0) Filepath----------------------------------------------------------------------------------------------------------das ist das haus des nikolaus
+            do.redo10()## 0) Filepath--------------------------------------------------------------------------------
 ##    das ist das haus des nikolaus
 #!/usr/bin/env pybricks-micropythondas ist das haus des nikolaus
 das ist das haus des nikolaus
