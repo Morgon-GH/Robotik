@@ -1,3 +1,13 @@
--Kann man variablen werte wie ports oder so übergeben? [fragen, wenns niemand weiß testen]
--Wenn ich in einem destrutor __del__ "del self" verwende, wird damit der destruktor __del__ selbst ausgeführt? [fragen, sonst mit sicherung testen]
--Wie kann ich alle objekte einer klasse zerstören bzw. resetten? [fragen, sonst iwi testen oder weglassen]
+TO ASK:
+    -Kann man variablen werte wie ports oder so übergeben? [fragen, wenns niemand weiß testen]
+    -Wenn ich in einem destrutor __del__ "del self" verwende, wird damit der destruktor __del__ selbst ausgeführt? [fragen, sonst mit sicherung testen]
+    -Wie kann ich alle objekte einer klasse zerstören bzw. resetten? [fragen, sonst iwi testen oder weglassen]
+
+TO DO:                                                                                                                                                     (1.1.x)
+    -Customize:
+        * Customclass
+    -robotics:
+        * Robotics_jomo; dort alle innere Klassen
+    -media:
+        * Töne und Bilder machen und ein paar Playmethoden
+    -redoing: Vorerst auch gerne leer und unbenutzt lassen

@@ -88,8 +88,10 @@ class Robotics_jomo(Customclass_jomo):
     class Extension_jomo(Motor_jomo):
         #fill
 
-    class BgExtension_jomo(Customclass_jomo):
+    class BgExtension_jomo(Customclass_jomo, DriveBase_jomo):
         #fill
+
+        #alle Methoden von DriveBase überschreiben
     
 
     class Message_jomo(Customclass_jomo):
@@ -124,13 +126,13 @@ class Robotics_jomo(Customclass_jomo):
         if makeredo==True:
             do=RedoINTE_jomo()
         if driveports[0]!==' ':
-            self.a=Motor_jomo(driveports[0])
+            self.aM=Motor_jomo(driveports[0])
         if driveports[1]!==' ':
-            self.b=Motor_jomo(driveports[1])
+            self.bM=Motor_jomo(driveports[1])
         if extports[0]!==' ':
-            self.c=Extension_jomo(extports[0])
+            self.cM=Extension_jomo(extports[0])
         if extports[1]!==' ':
-            self.d=Extension_jomo(extports[1])
+            self.dM=Extension_jomo(extports[1])
         self.DriveBase_jomo(self.a, self.b, wheel_diameter, axle_track)
 
         if sensor[0]=='gyro': 
@@ -211,3 +213,10 @@ class Robotics_jomo(Customclass_jomo):
 
     def drive_angle(self, angle=360, angleset=False, angleset=0):
         pass
+
+
+
+class Basic_Divebase_jomo(Customclass_jomo, Robotics_jomo):
+    #fill. Alle Werte so initialisieren wie sie für Basic Drivebase benötigt werden
+
+#hier noch weitere Spezialisierte Klassen
