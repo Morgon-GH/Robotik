@@ -7,25 +7,67 @@ II. Die Module
     -Customclass_jomo
     -Attribute_jomo
   b. robotics_jomo
+    -Robotics_jomo
   c. redoing_jomo
   d. media_jomo
+  e. hardmodels_jomo
 
 ===================================================================================================================
 -------------------------------------------------------------------------------------------------------------------
 ===================================================================================================================
 
+
+
 I. Beschreibung des Aufbaus des Moduls
 
 Das Modul 'jomo' ist aufgebaut auf 'pybricks' und für die Steuerung des MINDSTORMS EV3 gedacht. [..]
 
+
+
 ===================================================================================================================
+
+
 
 II. Die Module
 
-[..]
+
+  a. customize_jomo
+
+    -Customclass_jomo:
+      #
+    -Attribute_jomo:
+      #
+
+
+  b. robotics_jomo
+
+    -Robotics_jomo:
+
+      *Unterklassen
+        #
+      *Methoden
+        #
+      *Attribute
+        ^ self.scs [Screensetter, siehe media_jomo -> Screensetter_jomo, zum Einfachen konfiguren des Bildschirms]
+        ^ self.do [RedoINTE_jomo, siehe redoing_jomo -> RedoINTE_jomo, um die Builtins zu nutzen]
+        ^ self.aM [Motor_jomo, siehe Motor_jomo, wird zur Fahrtsteuerung. Das Port kann man übergeben, aber aM wird immer zum Fahrtmotor]
+        ^ self.bM [Motor_jomo, siehe Motor_jomo, wird zur Fahrtsteuerung. Das Port kann man übergeben, aber aM wird immer zum Fahrtmotor]
+        ^ self.cM [Extension_jomo, siehe Extension_jomo, siehe auch oben, wird nur erzeugt, wenn keine große Extension erwünscht ist]
+        ^ self.dM [Extension_jomo, siehe Extension_jomo, siehe auch oben, wird nur erzeugt, wenn keine große Extension erwünscht ist]
+        ^ self.bExt [BgExtension_jomo, siehe BgExtension_jomo, wird nur erzeugt, wenn eine große Extension erwünscht ist]
+        ^ self.db [Drivebase_jomo]
+
+    -Basic_jomo
+      #
+
+
 
 ===================================================================================================================
+
+
 
 III. Kontakt und Impressum
 
 [..]
+
+

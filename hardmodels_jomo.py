@@ -32,45 +32,10 @@ import gc
 
 
 
-## 3) Moduling Zone-----------------------------------------------------------------------------------------------------
-##    
+## 3) Moduling Zone--------------------------------------------------------------------------------------------------
+##
 
-class Picturefile_jomo(Customclass_jomo):
-    #fill
-    def __init__(self, picture=' ', picture_=False):
-        if sound_=True:
-            self.picture=picture
-        else:
-            self.picture=' '
-        ##
-    
-    def imp(self):
-        ##
+class Basic_jomo(Customclass_jomo, Robotics_jomo):
+    #fill. Alle Werte so initialisieren wie sie für Basic Drivebase benötigt werden
 
-    def exp(self):
-        ##
-
-
-class Audiofile_jomo(Customclass_jomo):
-    def __init__(self, sound=' ', sound_=False):
-        if sound_=True:
-            self.sound=sound
-        else:
-            self.sound=' '
-        ##
-
-    def _reinit(self, sound=' ', sound_=True)
-
-    def play(self):
-        ##
-
-    
-class Screensetter_jomo(Customclass_jomo):
-    def __init__(self):
-        pass
-
-    def set_surround(self, headborder=True, downborder=False, up=False, down=False):
-        ##
-
-    def inc(self, elment):
-        ##
+#hier noch weitere Spezialisierte Klassen

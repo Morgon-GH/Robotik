@@ -2,6 +2,8 @@ TO ASK:
     -Kann man variablen werte wie ports oder so übergeben? [fragen, wenns niemand weiß testen]
     -Wenn ich in einem destrutor __del__ "del self" verwende, wird damit der destruktor __del__ selbst ausgeführt? [fragen, sonst mit sicherung testen]
     -Wie kann ich alle objekte einer klasse zerstören bzw. resetten? [fragen, sonst iwi testen oder weglassen]
+    -Spielt die Reihenfolge der Mutterklassen in Python eine Rolle?
+
 
 TO DO:                                                                                                                                                     (1.1.x)
     -Customize:
@@ -11,3 +13,6 @@ TO DO:                                                                          
     -media:
         * Töne und Bilder machen und ein paar Playmethoden
     -redoing: Vorerst auch gerne leer und unbenutzt lassen
+
+TO DO:                                                                                                                                                     (1.2.x)
+    -Exeptionmanager

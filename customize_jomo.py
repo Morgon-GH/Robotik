@@ -73,7 +73,6 @@ class Customclass_jomo():
 
 
 class Attribute_jomo(Customclass_jomo):
-    # Not used now; no usage in time but might useful in other releases and for developers
     def __init__(self, value, kind='int'):
         '''kind can be: 'int', 'bool', 'char', 'string', 'float', 'double', 'long', 'port', 'stop',
          'direction', 'color', 'button'

@@ -40,6 +40,16 @@ class Robotics_jomo(Customclass_jomo):
     Preferences nutzen große Räder, im Abstand von 10cm. 
     '''
 
+
+    #Klassen, die aufgrund von Objektorientiertheit gemacht werden
+    class Screen(Customclass_jomo):
+        #fill
+    
+
+    class Speaker_jomo(Customclass_jomo):
+        #fill
+
+
     #überschreiben
     class TouchSensor_jomo(TouchSensor, Customclass_jomo):
         #fill
@@ -120,20 +130,37 @@ class Robotics_jomo(Customclass_jomo):
         ## send Nachricht senden
 
 
-    def __init__(self, makeredo=True, wheel_diameter=45, axle_track=100,
-     driveports=(Port.A, Port.D), extports=(Port.B, Port.C),
-     sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}):
-        if makeredo==True:
-            do=RedoINTE_jomo()
+    def __init__(self, makeredo_=True, wheel_diameter=45, axle_track=100,
+     driveports=(Port.A, Port.D), extports=(Port.B, Port.C), bigExt_=False
+     sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}, screenset_=True, ev3_=True):
+
+        if screenset_==True:
+            self.scs=Screensetter_jomo()
+        else:
+            pass
+        
+        if makeredo_==True:
+            self.do=RedoINTE_jomo()
+        else:
+            pass
+        
         if driveports[0]!==' ':
             self.aM=Motor_jomo(driveports[0])
         if driveports[1]!==' ':
             self.bM=Motor_jomo(driveports[1])
-        if extports[0]!==' ':
-            self.cM=Extension_jomo(extports[0])
-        if extports[1]!==' ':
-            self.dM=Extension_jomo(extports[1])
-        self.DriveBase_jomo(self.a, self.b, wheel_diameter, axle_track)
+        if bigExt_==False:
+            if extports[0]!==' ':
+                self.cM=Extension_jomo(extports[0])
+            else:
+                pass
+            if extports[1]!==' ':
+                self.dM=Extension_jomo(extports[1])
+            else:
+                pass
+        else:
+            self.bExt=BgExtension_jomo(extports[0], extports[1])
+
+        self.db=DriveBase_jomo(self.a, self.b, wheel_diameter, axle_track)
 
         if sensor[0]=='gyro': 
             self.s1=GyroSensor_jomo(Port.S1)
@@ -213,10 +240,3 @@ class Robotics_jomo(Customclass_jomo):
 
     def drive_angle(self, angle=360, angleset=False, angleset=0):
         pass
-
-
-
-class Basic_Divebase_jomo(Customclass_jomo, Robotics_jomo):
-    #fill. Alle Werte so initialisieren wie sie für Basic Drivebase benötigt werden
-
-#hier noch weitere Spezialisierte Klassen

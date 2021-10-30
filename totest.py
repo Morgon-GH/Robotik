@@ -28,49 +28,24 @@ from pybricks.tools import wait, StopWatch, DataLog
 from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile 
 
+# Für Customclass&Alle
 import gc
 
 
 
-## 3) Moduling Zone-----------------------------------------------------------------------------------------------------
-##    
-
-class Picturefile_jomo(Customclass_jomo):
-    #fill
-    def __init__(self, picture=' ', picture_=False):
-        if sound_=True:
-            self.picture=picture
-        else:
-            self.picture=' '
-        ##
-    
-    def imp(self):
-        ##
-
-    def exp(self):
-        ##
+# Können Ports o. ä. als Variablen genommen werden?
+brick=EV3Brick()
+portes=Port.A
+motor=Motor(portes)
 
 
-class Audiofile_jomo(Customclass_jomo):
-    def __init__(self, sound=' ', sound_=False):
-        if sound_=True:
-            self.sound=sound
-        else:
-            self.sound=' '
-        ##
-
-    def _reinit(self, sound=' ', sound_=True)
-
-    def play(self):
-        ##
-
-    
-class Screensetter_jomo(Customclass_jomo):
+# Destuktortest
+class Testt():
     def __init__(self):
         pass
+    def __del__(self):
+        del self
 
-    def set_surround(self, headborder=True, downborder=False, up=False, down=False):
-        ##
-
-    def inc(self, elment):
-        ##
+t=Testt()
+del t
+t.__del__()
