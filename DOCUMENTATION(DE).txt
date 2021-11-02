@@ -50,12 +50,21 @@ II. Die Module
       *Attribute
         ^ self.scs [Screensetter, siehe media_jomo -> Screensetter_jomo, zum Einfachen konfiguren des Bildschirms]
         ^ self.do [RedoINTE_jomo, siehe redoing_jomo -> RedoINTE_jomo, um die Builtins zu nutzen]
+
         ^ self.aM [Motor_jomo, siehe Motor_jomo, wird zur Fahrtsteuerung. Das Port kann man übergeben, aber aM wird immer zum Fahrtmotor]
         ^ self.bM [Motor_jomo, siehe Motor_jomo, wird zur Fahrtsteuerung. Das Port kann man übergeben, aber aM wird immer zum Fahrtmotor]
-        ^ self.cM [Extension_jomo, siehe Extension_jomo, siehe auch oben, wird nur erzeugt, wenn keine große Extension erwünscht ist]
-        ^ self.dM [Extension_jomo, siehe Extension_jomo, siehe auch oben, wird nur erzeugt, wenn keine große Extension erwünscht ist]
-        ^ self.bExt [BgExtension_jomo, siehe BgExtension_jomo, wird nur erzeugt, wenn eine große Extension erwünscht ist]
+        ^ self.cM [Extension_jomo, siehe Extension_jomo, siehe auch oben, wird, wenn eine große Ext gemacht wird, als None definiert]
+        ^ self.dM [Extension_jomo, siehe Extension_jomo, siehe auch oben, wird, wenn eine große Ext gemacht wird, als None definiert]
+        ^ self.bExt [BgExtension_jomo, siehe BgExtension_jomo, wird, wenn eine große Ext gemacht wird, als None definiert]
         ^ self.db [Drivebase_jomo]
+
+        ^ self.s1 [Sensor an Port 1]
+        ^ self.s2 [Sensor an Port 2]
+        ^ self.s3 [Sensor an Port 3]
+        ^ self.s4 [Sensor an Port 4]
+
+        ^ self.drat [Dictionary mit Attributen zum Roboter]:
+            ° #
 
     -Basic_jomo
       #

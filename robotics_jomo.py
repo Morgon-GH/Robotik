@@ -134,6 +134,8 @@ class Robotics_jomo(Customclass_jomo):
      driveports=(Port.A, Port.D), extports=(Port.B, Port.C), bigExt_=False
      sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}, screenset_=True, ev3_=True):
 
+        self.drat={'robo': True, }
+
         if screenset_==True:
             self.scs=Screensetter_jomo()
         else:
@@ -152,13 +154,15 @@ class Robotics_jomo(Customclass_jomo):
             if extports[0]!==' ':
                 self.cM=Extension_jomo(extports[0])
             else:
-                pass
+                self.cM=None
             if extports[1]!==' ':
                 self.dM=Extension_jomo(extports[1])
             else:
-                pass
+                self.dM=None
         else:
             self.bExt=BgExtension_jomo(extports[0], extports[1])
+            self.cM=None
+            self.dM=None
 
         self.db=DriveBase_jomo(self.a, self.b, wheel_diameter, axle_track)
 
@@ -234,6 +238,9 @@ class Robotics_jomo(Customclass_jomo):
             do.redo9()
         elif redo==10:
             do.redo10()
+
+    def config_drat(self, changes={}):
+        pass
 
     def drive_speed(self, speed=100):
         pass
