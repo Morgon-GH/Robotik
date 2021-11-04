@@ -13,7 +13,7 @@
 ##    File: 
 ##         Program ( ) 
 ##         Module  (x)
-##    Version: 1.0.13 (Version.release.commit, reset per each new version and release)
+##    Version: 1.0.22 (Version.release.commit, reset per each new version and release)
 ##    Look for the documentation. If there are questions, write to the Support.
 
 
@@ -25,7 +25,7 @@ from pybricks.hubs import EV3Brick
 from pybricks.ev3devices import Motor, TouchSensor, ColorSensor, InfraredSensor, UltrasonicSensor, GyroSensor
 from pybricks.parameters import Port, Stop, Direction, Button, Color
 from pybricks.tools import wait, StopWatch, DataLog
-from pybricks.robotics import DriveBase
+from pybricks.robotic import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile 
 
 import gc
@@ -35,7 +35,7 @@ import gc
 ## 3) Moduling Zone--------------------------------------------------------------------------------------------------
 ##    
 
-class Robotics_jomo(Customclass_jomo):
+class Robotic_jomo(Customclass_jomo):
     '''Modul für eine Zentrale Robotersteuerung. Standartimports in der üblichen Ausführlichkeit benötigt.
     Preferences nutzen große Räder, im Abstand von 10cm. 
     '''
@@ -129,27 +129,34 @@ class Robotics_jomo(Customclass_jomo):
 
         ## send Nachricht senden
 
-
+    
     def __init__(self, makeredo_=True, wheel_diameter=45, axle_track=100,
      driveports=(Port.A, Port.D), extports=(Port.B, Port.C), bigExt_=False
      sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}, screenset_=True, ev3_=True):
 
-        self.drat={'robo': True, }
+        if ev3_==True:
+            self.ev3=EV3Brick()
+        else:
+            self.ev3=None
 
         if screenset_==True:
             self.scs=Screensetter_jomo()
         else:
-            pass
+            self.scs=None
         
         if makeredo_==True:
             self.do=RedoINTE_jomo()
         else:
-            pass
+            self.do=None
         
         if driveports[0]!==' ':
             self.aM=Motor_jomo(driveports[0])
+        else:
+            self.aM=None
         if driveports[1]!==' ':
             self.bM=Motor_jomo(driveports[1])
+        else:
+            self.bM=None
         if bigExt_==False:
             if extports[0]!==' ':
                 self.cM=Extension_jomo(extports[0])
@@ -163,8 +170,14 @@ class Robotics_jomo(Customclass_jomo):
             self.bExt=BgExtension_jomo(extports[0], extports[1])
             self.cM=None
             self.dM=None
-
-        self.db=DriveBase_jomo(self.a, self.b, wheel_diameter, axle_track)
+        
+        if self.aM!=None:
+            if self.bM!=None:
+                self.db=DriveBase_jomo(self.a, self.b, wheel_diameter, axle_track)
+            else:
+                self.db=None
+        else:
+            self.db=None
 
         if sensor[0]=='gyro': 
             self.s1=GyroSensor_jomo(Port.S1)
@@ -177,7 +190,8 @@ class Robotics_jomo(Customclass_jomo):
         elif sensor[0]=='ultrasonic':
             self.s1=UltrasonicSensor_jomo(Port.S1)
         else:
-            pass
+            self.s1=None
+        
         if sensor[1]=='gyro':
             self.s2=GyroSensor_jomo(Port.S2)
         elif sensor[1]=='touch':
@@ -189,7 +203,8 @@ class Robotics_jomo(Customclass_jomo):
         elif sensor[1]=='ultrasonic':
             self.s2=UltrasonicSensor_jomo(Port.S2)
         else:
-            pass
+            self.s2=None
+        
         if sensor[2]=='gyro':
             self.s3=GyroSensor_jomo(Port.S3)
         elif sensor[2]=='touch':
@@ -201,7 +216,8 @@ class Robotics_jomo(Customclass_jomo):
         elif sensor[2]=='ultrasonic':
             self.s3=UltrasonicSensor_jomo(Port.S3)
         else:
-            pass
+            self.s3=None
+
         if sensor[3]=='gyro':
             self.s4=GyroSensor_jomo(Port.S4)
         elif sensor[3]=='touch':
@@ -213,7 +229,9 @@ class Robotics_jomo(Customclass_jomo):
         elif sensor[3]=='ultrasonic':
             self.s4=UltrasonicSensor_jomo(Port.S4)
         else:
-            pass
+            self.s4=None
+
+        self.drat={'version': (1, 0), 'robo': True, 'devices': {'motors': {'aM': self.aM, 'bM': self.bM, 'cM': self.cM, 'dM': self.dM}}}
 
     def redo_(self, redo=1):
         if redo==0:
@@ -246,4 +264,7 @@ class Robotics_jomo(Customclass_jomo):
         pass
 
     def drive_angle(self, angle=360, angleset=False, angleset=0):
+        pass
+
+    def check_battery(self):
         pass

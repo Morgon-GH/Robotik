@@ -1,3 +1,5 @@
+Dokumentation des privaten Moduls "jomo" für die Sprache Micropython; Version 1.0.22
+
 ------------------------------------------------------Inhalt------------------------------------------------------
 ===================================================================================================================
 
@@ -6,11 +8,12 @@ II. Die Module
   a. customize_jomo
     -Customclass_jomo
     -Attribute_jomo
-  b. robotics_jomo
-    -Robotics_jomo
+  b. robotic_jomo
+    -Robotic_jomo
   c. redoing_jomo
   d. media_jomo
   e. hardmodels_jomo
+  f. Exeptions and stuff was von demit ausgegeben wird
 
 ===================================================================================================================
 -------------------------------------------------------------------------------------------------------------------
@@ -39,9 +42,9 @@ II. Die Module
       #
 
 
-  b. robotics_jomo
+  b. robotic_jomo
 
-    -Robotics_jomo:
+    -Robotic_jomo:
 
       *Unterklassen
         #
@@ -70,13 +73,24 @@ II. Die Module
       #
 
 
+  c. redoing_jomo
+
+    #
+
+
+  d. media_jomo
+
+    #
+
+
+  e. hardmodels_jomo
+
+    #
+
+
+  f.  Exeptions and stuff was von demit ausgegeben wird
+
+    #
+
 
 ===================================================================================================================
-
-
-
-III. Kontakt und Impressum
-
-[..]
-
-

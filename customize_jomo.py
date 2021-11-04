@@ -13,7 +13,7 @@
 ##    File: 
 ##         Program ( ) 
 ##         Module  (x)
-##    Version: 1.0.13 (Version.release.commit, reset per each new version and release)
+##    Version: 1.0.22 (Version.release.commit, reset per each new version and release)
 ##    Look for the documentation. If there are questions, write to the Support.
 
 
@@ -25,7 +25,7 @@ from pybricks.hubs import EV3Brick
 from pybricks.ev3devices import Motor, TouchSensor, ColorSensor, InfraredSensor, UltrasonicSensor, GyroSensor
 from pybricks.parameters import Port, Stop, Direction, Button, Color
 from pybricks.tools import wait, StopWatch, DataLog
-from pybricks.robotics import DriveBase
+from pybricks.robotic import DriveBase
 from pybricks.media.ev3dev import SoundFile, ImageFile 
 
 # Für Customclass&Alle
@@ -39,22 +39,45 @@ import gc
 class Customclass_jomo():
     '''Superclass for all classes of this module'''
 
-    def __init__(self, developement=False):
-        if developement=True:
-            self._printers=True
-        else:
-            pass
+    def __init__(self):
+        pass
         #
 
     def _reinit(self):
         self.__init__()
         #
 
-    def _printer(self, toprint='  '):
-        if self._printers==True:
-            print(toprint)
-        else: 
+    def _treat_demit(self, demitas='print'):
+        self._htdemit=['print', 'showonscreen']
+        if demitas in self._htdemit:
+            self._demitas=demitas
+        else:
+            print("There was a mistake as the attribute 'demitas' was given. So this warning is printed. If the problem is not because of your own code, contact support.")
+
+    def _demit(self, todemit="", _demitas=self._demitas):
+        if _demitas=='print':
+            print(todemit)
+        if _demitas=='showonscreen':
             pass
+            #Override in robotic!
+        if _demitas=='':        # <- fill!
+            pass
+        if _demitas=='':
+            pass
+        if _demitas=='':
+            pass
+        else:
+            print("There was a mistake as the attribute 'demitas' was given. So this warning is printed. If the problem is not because of your own code, contact support.")
+
+    def _demit_warning(self, todw=101):
+        self._config_warning()
+        x="Warning/Error/Exeption with the Code" +str(todw) +": "
+        self._demit(x)
+        self._demit(self._warnings[todw])
+
+    def _config_warning(self, add=(10000, 'Automatic! If this is printed, there is a usage or programming mistake')):
+        self._warnings={}
+        self._warnings.append(add)
 
     def __del__(self):
         del self
@@ -69,7 +92,7 @@ class Customclass_jomo():
         ##
 
     def reset_ns():
-        # has to collect all objects of the kind Customclass_jomo
+        # collects all intsances of Customclass_jomo
 
 
 class Attribute_jomo(Customclass_jomo):
@@ -77,19 +100,19 @@ class Attribute_jomo(Customclass_jomo):
         '''kind can be: 'int', 'bool', 'char', 'string', 'float', 'double', 'long', 'port', 'stop',
          'direction', 'color', 'button'
         '''
-        self.kinds=['int', 'bool', 'char', 'string', 'float', 'double', 'long', 'port', 'stop',
+        self._kinds=['int', 'bool', 'char', 'string', 'float', 'double', 'long', 'port', 'stop',
          'direction', 'color', 'button']
-        self.value=value
-        if kind==self.kinds:
-            self.kind=kind
+        self._value=value
+        if kind in self._kinds:
+            self._kind=kind
         else:
             del self
 
     def set_(self, value):
-        self.value=value
+        self._value=value
 
     def get_val(self):
-        return self.value
+        return self._value
 
     def get_kin(self):
-        return self.kind
+        return self._kind
