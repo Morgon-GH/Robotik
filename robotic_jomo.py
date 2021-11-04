@@ -42,8 +42,22 @@ class Robotic_jomo(Customclass_jomo):
 
 
     #Klassen, die aufgrund von Objektorientiertheit gemacht werden
-    class Screen(Customclass_jomo):
-        #fill
+    class Screen_jomo(Customclass_jomo):
+
+        class Screensetter_jomo(Customclass_jomo):
+            def __init__(self):
+              pass
+
+            def set_surround(self, headborder=True, downborder=False, up=False, down=False):
+                ##
+
+            def inc(self, elment):
+                ##
+
+        def __init__(self,setter_=True):
+            self.setter=Screensetter_jomo()
+
+    #fill
     
 
     class Speaker_jomo(Customclass_jomo):
@@ -130,25 +144,21 @@ class Robotic_jomo(Customclass_jomo):
         ## send Nachricht senden
 
     
-    def __init__(self, makeredo_=True, wheel_diameter=45, axle_track=100,
-     driveports=(Port.A, Port.D), extports=(Port.B, Port.C), bigExt_=False
-     sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}, screenset_=True, ev3_=True):
+    def __init__(self, wheel_diameter=45, axle_track=100,
+     driveports=(Port.A, Port.D), extports=(Port.B, Port.C), sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}, bigExt_=False, makeredo_=True, screenset_=True, ev3_=True):
 
+        #EV3
         if ev3_==True:
             self.ev3=EV3Brick()
+            self.speak=Speaker_jomo()
+            self.screen=Screen_jomo(setter_=screenset_)
+
         else:
             self.ev3=None
-
-        if screenset_==True:
-            self.scs=Screensetter_jomo()
-        else:
-            self.scs=None
+            self.speak=None
+            self.screen=None
         
-        if makeredo_==True:
-            self.do=RedoINTE_jomo()
-        else:
-            self.do=None
-        
+        #Motors
         if driveports[0]!==' ':
             self.aM=Motor_jomo(driveports[0])
         else:
@@ -171,6 +181,7 @@ class Robotic_jomo(Customclass_jomo):
             self.cM=None
             self.dM=None
         
+        #Drivebase
         if self.aM!=None:
             if self.bM!=None:
                 self.db=DriveBase_jomo(self.a, self.b, wheel_diameter, axle_track)
@@ -179,6 +190,7 @@ class Robotic_jomo(Customclass_jomo):
         else:
             self.db=None
 
+        #Sensors
         if sensor[0]=='gyro': 
             self.s1=GyroSensor_jomo(Port.S1)
         elif sensor[0]=='touch':
@@ -231,6 +243,7 @@ class Robotic_jomo(Customclass_jomo):
         else:
             self.s4=None
 
+        #dratconfiguring
         self.drat={'version': (1, 0), 'robo': True, 'devices': {'motors': {'aM': self.aM, 'bM': self.bM, 'cM': self.cM, 'dM': self.dM}}}
 
     def redo_(self, redo=1):

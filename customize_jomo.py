@@ -60,7 +60,7 @@ class Customclass_jomo():
         if _demitas=='showonscreen':
             pass
             #Override in robotic!
-        if _demitas=='':        # <- fill!
+        if _demitas=='popup':        # <- fill!
             pass
         if _demitas=='':
             pass
@@ -76,7 +76,7 @@ class Customclass_jomo():
         self._demit(self._warnings[todw])
 
     def _config_warning(self, add=(10000, 'Automatic! If this is printed, there is a usage or programming mistake')):
-        self._warnings={}
+        self._warnings={1: 'unallowed command', 2: 'unexisting instance', 3: 'type error'}
         self._warnings.append(add)
 
     def __del__(self):
