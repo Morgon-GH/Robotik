@@ -4,6 +4,7 @@ TO ASK:
     -Wie kann ich alle objekte einer klasse zerstören bzw. resetten? [fragen, sonst iwi testen oder weglassen]
     -Spielt die Reihenfolge der Mutterklassen in Python eine Rolle?
     -Darf man Attribute als Parameter vordefinieren? (    "def _demit(self, todemit, demitas=self.demitas):"        )  [fragen, sonst testen]
+    -Popup nachschauen!
 
 
 TO DO:                                                                                                                                                     (1.1.x)
@@ -17,3 +18,8 @@ TO DO:                                                                          
 
 TO DO:                                                                                                                                                     (1.2.x)
     -Exeptionmanager
+
+
+Tipps etc.:
+    - "@classmethod" macht eine Klassenmethode
+    - "@staticmethod" macht eine statische Methode

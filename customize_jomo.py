@@ -54,7 +54,7 @@ class Customclass_jomo():
         else:
             print("There was a mistake as the attribute 'demitas' was given. So this warning is printed. If the problem is not because of your own code, contact support.")
 
-    def _demit(self, todemit="", _demitas=self._demitas):
+    def _demit(self, todemit="", _demitas=self._demitas, warning_=False):
         if _demitas=='print':
             print(todemit)
         if _demitas=='showonscreen':
@@ -69,11 +69,11 @@ class Customclass_jomo():
         else:
             print("There was a mistake as the attribute 'demitas' was given. So this warning is printed. If the problem is not because of your own code, contact support.")
 
-    def _demit_warning(self, todw=101):
+    def _demit_warning(self, todw=101, additional=''):
         self._config_warning()
         x="Warning/Error/Exeption with the Code" +str(todw) +": "
-        self._demit(x)
-        self._demit(self._warnings[todw])
+        self._demit(x, _demitas=self._demitas, warning_=True)
+        self._demit(self._warnings[todw], _demitas=self._demitas, warning_=True)
 
     def _config_warning(self, add=(10000, 'Automatic! If this is printed, there is a usage or programming mistake')):
         self._warnings={1: 'unallowed command', 2: 'unexisting instance', 3: 'type error'}

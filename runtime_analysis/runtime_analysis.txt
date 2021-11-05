@@ -1,0 +1,636 @@
+Selbsterstellte pybricks-Dokumentation (Jojo)
+Hier eine Zusammenfassung der in Micropython standardmäßig mitinplementierten Modulen, vielleicht wirds auch eher das ganze pybricks, mal schauen ;)
+Im Folgenden werden Links stehen - hier muss jeweils der Nutzer ersetzt werden, wenn aber VSC und Micropython unter den Preferences auf Windows installiert wurden, läuft das ;-)
+
+
+  hubs.EV3Bricks (Ev3 Stein)
+     - Buttons:
+         ° button.pressed(): gibt Liste aus gedrückten Knöpfen aus
+
+     - Licht:
+         ° light.on(color): lässt die Statusleuchte in der Farbe color leuchten
+         ° light.off(): macht das Licht aus
+
+     - speaker (Soundsachen):
+          ° beep(Frequenz, Dauer): Dauer in Millisekunden
+          ° play_notes(noten, tempo=120): noten sind hierbei eine Liste und Tempo die Noten pro minute
+          ° play_file(dateiname): Vorsicht! Die Datei muss sich im gleichen Ordner befinden!
+          ° speak(text): gibt text akustisch aus
+          ° set_speech_options, siehe dokumentation, unwichtig für normale Sachen
+          ° set_volume(lautstärke): setzt Lautstärke auf lautstärke, optional für welche Methoden von speaker das gelten soll - siehe Dokumentation
+
+    - screen:
+        ° clear(): Bildschirm leeren
+        ° draw_text(x, y, text, text_color=Color.BLACK, background_color=None)
+        ° print(*args, sep=' ', end='\n'): args sind Strings, die geprintet werden sollen, sep zwischen den Argumenten, end nach dem letzten Argument
+        ° set_font(Schriftart): Vorsicht! Nicht alles ist erlaubt..
+        ° load_image(source): bild, dessen Bildname definiert oder geladen ist; zentriert
+        ° draw_image(x, y, source, transparent=None): siehe oben, transparent -> Dokumentation
+        ° draw_pixel(x, y, color=Color.BLACK): x, y ist die Pos. des Pixels, color die Farbe
+        ° draw_line(x1, y1, x2, y2, with=1, color=Color.BLACK): P1 und P2 Punkte auf der Geraden, with die Dicke und color die Farbe
+        ° draw_box(x1, y1, x2, y2, r=0, fill=False, color=Color.BLACK): P1 und P2 sind Eckpunkte, fill Füllung, clolor Farbe und r der Radius der Ecken (idk)
+        ° draw_circle(y, x, r, fill=False, color=Color.BLACK): x, y ist der Mittelpunkt, r der Radius, fill die Füllung color die Farbe
+        ° screen.height: Höhe des Bildschirms
+        ° screen.width: Breite des Bildschirms
+        ° save(filename): Speichert im Dateiordner als filename.png den Bildschirm
+
+    - battery:
+        ° voltage(): Gibt die Spannung der Batterie aus.
+        ° current(): GIbt die Aktuelle Stromversorgung aus
+
+
+
+ev3devices (Motoren und Sensoren für EV3)
+     - Motoren:
+
+       ° Motor(Port, positive_direction=Direction.CLOCKWISE, gears=None): Anschluss=Port, positive_direction ist die Richtung, in die sich der Motor bei positivem
+
+    Speed oder Winkel dreht; im Uhrzeigersinn ist standardtisiert
+
+         ° speed(): gibt den aktuellen Speed des Motors aus
+         ° angle(): Ausgabe des aktuellen Rotationswinkels
+         ° reste_angle(angle): setzt den Rotationswinkel auf angle
+         ° stop(): lässt den Motor ausklingen (siehe 3.1.5 parameters)
+         ° brake(): Stoppt leicht anders, siehe Dokumentation (siehe 3.1.5 parameters)
+         ° hold(): Stoppt beim aktuellen Rotationswinkel (siehe 3.1.5 parameters)
+         ° run-Family:
+             # run(speed): Lässt Motor nach Geschwindigkeit laufen. (speed: Grad/sek)
+             # run_time(speed, time, then=Stop.HOLD, wait=True): Lauf für Zeit time(ms) mit Gesch. speed, sonstige: vorerst lassen!
+             # run_angle(speed, rotation_angle, [..]): in eckigen Klammern vorerst uninteressante Voreinstellungen, Läuft nach Drehzahl und Geschwindigkeit
+             # run_target(speed, target_angle, [..]): Läuft mit Gesch. speed BIS target_angle
+             # dc(duty): WIe in der alten grafischen Software von -100 bis 100 einer Art Power
+        ° track_target(target_angle): Wie run_target, nur dass hier so schnell wie möglich bis target_angle gelaufen wird
+        ° control (siehe Dokumentation -> Control class)
+
+    -Touch-Sensor:
+        ° TouchSensor(port): Anschluss
+        ° pressed(): gibt aus, ob der Knopf gedrückt wurde, Achtung: alleine bringt der Befehl nichts! Er wird ja direkt ausgeführt, wenn der vorherige Abgeschlossen wurde
+
+    -Color Sensor:
+        ° ColorSensor(port): Anschluss
+        ° color(): gibt aktuell wahrgenommene Farbe aus: Color.XX (für XX BLACK, BLUE, GREEN, QELLOW, RED, WHITE, BROWN möglich), wenn keine Farbe wahrgenommen, None
+        ° ambient(): Intensität des Lichts, in Prozent, 0% ist dunkel, 100% ist hell
+        ° reflectio(): Misst die Reflektion in Prozent, 0% keine Reflexion, 100% maximale Reflexion des roten Lichts
+        ° rgb(): reflection() mit rotem, grünem und blauem Licht, als Dreiertupel von Prozentangaben auf eine Nachkommastelle genau
+
+    - Infrarot Sensor und Fernbedienung:
+        ° InfraredSensor(port): Anschluss
+        ° distance(): gibt die Distanz an, wie ein Ultraschallsensor, nur dass dieser es mit rotem Licht macht
+        ° beacon(channel): Kanal der genutzt wird (Damit keine zwei Roboter auf die falschen Fernbedienungen reagieren), gibt aus: (Relative distanz in %, Winkel in " ° ")
+        ° buttons(channel): Gibt die Liste an Buttons aus, die auf diesem Kanal als gedrückt gelten - nicht mehr als 2, sonst keine Sicherheit mehr!
+        ° keypad(): Kann alle vier Hoch/Runter-Tasten der Fernbedienung erkennen, aber keine anderen Tasten - Channel 1 verpflichtend! Gibt Liste der Knöpfe aus
+
+    - Ultraschallsensor:
+        ° UltrasonicSensor(port): Anschluss
+        ° distance(silent=False): Misst und gibt die Distanz aus, erst ab ~8cm, silent=True bewirkt, dass der Sensor nach der Aktion ausgeschaltet wird, vorsicht! siehe Dokumentation. Nutzt Ultraschall.
+        ° presence(): Kontrolliert die Anwesenheit von anderen Ultraschallsensoren mit Ultraschall
+
+    - Gyrosensor:
+        ° GyroSensor(port, positive_direction=Direction.CLOCKWISE): Anschluss, positive Richtung sei im Uhrzeigersinn
+        ° speed(): Gibt die Winkelgeschwindigkeit Grad/sek aus
+        ° angle(): gibt den gemessenen Winkel aus (in ° )
+        ° reset_angle(angle): setzt den Winkel, von dem aus gemessen wird, auf angle
+
+
+
+nxtdevices (Sensoren und Motoren NXT)
+    - siehe dokumentation
+    - Motoren sind genau wie EV3 große Motoren zu handhaben
+    - Sensoren: meist ähnliche Verwendung! Bei vorinitialisierten Argumenten bei der Übergabe aufpassen!
+
+
+
+iodevices
+Dieses Modul ist für die Steuerung von EV3dev-Sensoren und für andere (eigendefinierte?) Ports. -> siehe Dokumentation
+
+
+
+parameters
+    - class Port():
+        ° Motoren-Ports: A, B, C, D
+        ° Sensoren-Ports: S1, S2, S3, S4
+
+    - class Direktion():
+        ° CLOCKWISE (Im Uhrzeigersinn)
+        ° COUNTERCLOCKWISE (Gegen den Uhrzeigersinn)
+
+    - class Stop() [wie der Motor abbremst]:
+        ° COAST (Lässt den Motor frei auslaufen)
+        ° BRAKE (bremst äußere leichte Kräfte ab)
+        ° HOLD (Hält den Motor bei genau dem Winkel - encoder benötigt - aufpassen, bei Zahnrädern Spielraum beachten)
+
+    - class Color(): BLACK; BLUE; GREEN; YELLOW; RED; WHITE; BROWN; ORANGE; PURPLE
+
+    - class Button(): LEFT_DOWN; DOWN; RIGHT_DOWN; LEFT; CENTER; RIGHT; LEGT_UP; UP; BEACON; RIGHT_UP
+
+
+
+tools
+    - Time:
+           wait(time): warte für time Millisekunden
+
+    - StopWatch():
+        ° time(): gibt die aktuelle Stopuhrzeit aus
+        ° pause(): pausiert die Stopuhr
+        ° resume(): stellt die Stopuhr wieder an
+        ° reset(): setzt die Stopuhr zurück, hat aber keinen Einfluss, ob sie läuft oder nicht!
+
+    - DataLog(*headers, name='log', timestamp=True, extrension='csv', append=False):
+        ° Geodneter Datensatz, der in eine Datei geschrieben wird. Wenn nötig, wird diese noch erzeugt.
+        ° headers sind die Spaltenüberschriften, Liste wrsl?
+        ° name ist der Name
+        ° timestamp=True fügt das Datum und die Zeit zum Namen hinzu, um eine bessere Versionsverwaltung zu haben.
+        ° extension ist die Extension.
+        ° append beschreibt, ob bei der Datei, die beschrieben wird, der Inhalt geleert oder angehängt wird. append=False für ersetzen.
+        ° log(*values): Eine Zeile speichern, Methode => Punktnotation! *values sind die Werte, wrsl Liste?
+
+
+
+robotics
+    - class DriveBase(left_Motor, right_Motor, wheel_diameter, axle_track): 
+
+    MotorNAME vom Linken und rechten Motor unter left_Motor & right_Motor, wheel_diameter der Raddurchmesser und axle_track ist der Abstand zwischen den Punkten, wo beide Räder den Boden berühren (Testen und ausbessern: Mit Rädern oder ohne gemessen?)
+
+
+    - straight(distance): 
+    Fährt distanz lang und stoppt dann (in Millimeter)
+
+
+    - turn(angle): 
+    dreht sich um den Winkel angle und stoppt dann
+
+
+    - settings(straight_speed, straight_acceleration, turn, rate, turn_acceleration): 
+
+    ° Wenn keine Argumente eingegeben werden, werden die aktuellen Werte in der Reihenfolge als Tupel ausgegeben
+
+    ° kann nur genutzt werden, wenn kein Motor sich bewegt.
+
+    ° straight_speed = Speed bei straight() [mm/s]
+
+    ° straight_acceleration = Beschleunigung bei straight() [mm/s/s]
+
+    ° turn_rat = Grad pro Sekunde, die sich das Rat bei turn() dreht [deg/s]
+
+    ° turn_acceleration = Beschleunigung bei turn() [deg/s/s]
+
+
+    - Fahrt&Stop allg.drive(drive_speed, turn_rate):
+
+        ° drive(drive_speed, turn_rate): drive_speed ist der Speed in mm/s und turn_rate die Graddrehung, die pro Sekunde erfolgt, in Grad/s. Das bezieht sich auf den Achsenmittelpunkt
+
+         ° stop(): stoppt, lässt frei auslaufen
+         
+    - Messen:
+
+        ° distance(): gefahrene Distanz
+
+        ° angle(): Rotationswinkel der DriveBase
+
+        ° state(): Gibt Tupel (Distanz[mm], Geschwindigkeit[mm/s], Winkel[Grad], RotationsrateProSek[Grad/s])
+
+        ° reset(): setzt die Distanz und den Winkel auf 0.
+
+
+    Measuring and validating the robot dimensions
+As a first estimate, you can measure the wheel_diameter and the axle_track with a ruler. Because it is hard to see where the wheels effectively touch the ground, you can estimate the axle_track as the distance between the midpoint of the wheels.
+
+In practice, most wheels compress slightly under the weight of your robot. To verify, make your robot drive 1000 mm using my_robot.straight(1000) and measure how far it really traveled. Compensate as follows:
+
+    If your robot drives not far enough, decrease the wheel_diameter value slightly.
+
+    If your robot drives too far, increase the wheel_diameter value slightly.
+
+
+Motor shafts and axles bend slightly under the load of the robot, causing the ground contact point of the wheels to be closer to the midpoint of your robot. To verify, make your robot turn 360 degrees using my_robot.turn(360) and check that it is back in the same place:
+
+    If your robot turns not far enough, increase the axle_track value slightly.
+
+    If your robot turns too far, decrease the axle_track value slightly.
+
+
+When making these adjustments, always adjust the wheel_diameter first, as done above. Be sure to test both turning and driving straight after you are done.
+
+Using the DriveBase motors individually
+Suppose you make a DriveBase object using two Motor objects called left_motor and right_motor. You cannot use these motors individually while the DriveBase is active.
+
+The DriveBase is active if it is driving, but also when it is actively holding the wheels in place after a straight() or turn() command. To deactivate the DriveBase, call stop().
+
+    Advanced Settings
+The settings() method is used to adjust commonly used settings like the default speed and acceleration for straight maneuvers and turns. Use the following attributes to adjust more advanced control setttings.
+
+You can only change the settings while the robot is stopped. This is either before you begin driving or after you call stop().
+distance_control
+The traveled distance and drive speed are controlled by a PID controller. You can use this attribute to change its settings. See The Control Class for an overview of available methods.
+heading_control
+The robot turn angle and turn rate are controlled by a PID controller. You can use this attribute to change its settings. See The Control Class for an overview of available methods.
+
+
+
+media
+    - class ImageFile():
+
+            ° Imformation:
+
+                # ACCEPT
+
+                # BACKWARD
+
+                # DECLINE
+
+                # FORWARD
+
+                # LEFT
+
+                # NO_GO
+
+                # QUESTION_MARK
+
+                # RIGHT
+
+                # STOP_1
+
+                # STOP_2
+
+                # THUMBS_DOWN
+
+                # THUMBS_UP
+
+          #WARNING
+
+    ° LEGO:
+
+    #EV3
+
+    # EV3_ICON
+
+    ° Objects:
+
+    # TARGET
+
+    ° Eyes:
+
+    # ANGRY
+
+    # AWAKE
+
+    # BOTTOM_LEFT
+
+    # BOTTOM_RIGHT
+
+    # CRAZY_1
+
+    # CRAZY_2
+
+    # DIZZY
+
+    # DOWN
+
+    # EVIL
+
+    # KNOCKED_OUT
+
+    # MIDDLE_LEFT
+
+    # MITTLE_RIGHT
+
+    # NEUTRAL
+
+    # PINCHED_LEFT
+
+    # PINCHED_MIDDLE
+
+    # PINCHED_RIGHT
+
+    # SLEEPING
+
+    # TIRED_LEFT
+
+    # TIRED_MIDDLE
+
+    # TIRED_RIGHT
+
+    # UP
+
+    # WINKING
+
+
+    - class SoundFile():
+
+        ° Für die Klänge siehe Dokumentation!
+
+        ° Expressions:
+
+    # BOING
+
+    # BOO
+
+    # CHEERING
+
+    # CRUNCHING
+
+    # CRYING
+
+    # FANFARE
+
+    # KUNG_FU
+
+    # LAUGHING_1
+
+    # LAUGHING_"
+
+    # MAGIC_WAND
+
+    # OUCH
+
+    # SHOUTING
+
+    # SMACK
+
+    # SNEEZING
+
+    # SNORING
+
+    # UH_OH
+
+    ° Information:
+
+    # ACTIVATE
+
+    # ANALYZE
+
+    # BACKWARDS
+
+    # COLOR
+
+    # DETECTED
+
+    # DOWN
+
+    # ERROR
+
+    # ERROR_ALARM
+
+    # FLASHING
+
+    # FORWARD
+
+    # LEFT
+
+    # OBJECT
+
+    # RIGHT
+
+    # SEARCHING
+
+    # START
+
+    # STOP
+
+    # TOUCH
+
+    # TURN
+
+    # UP
+
+    ° Kommunikation:
+
+    # BRAVO
+
+    # EV3
+
+    # FANTASTIC
+
+    # GAME_OVER
+
+    # GO
+
+    # GOOD_JOB
+
+    # GOOD
+
+    # GOODBYE
+
+    # HELLO
+
+    # HI
+
+    # LEGO
+
+    # MINDSTORMS
+
+    # MORNING
+
+    # NO
+
+    # OKAY
+
+    # OKEY_DOKEY
+
+    # SORRY
+
+    # THANK_YOU
+
+    # YES
+
+    # SPEED_DOWN
+
+    # SPEED_IDLE
+
+    # SPEED_UP
+
+    ° Colors
+
+    # BLACK
+
+    # BLUE
+
+    # BROWN
+
+    # GREEN
+
+    # RED
+
+    # WHITE
+
+    # YELLOW
+
+    ° Mechanik:
+
+    # AIR_RELEASE
+
+    # AIRBRAKE
+
+    # BACKING_ALERT
+
+    # HORN_1
+
+    # HORN_2
+
+    # LASER
+
+    # MOTORR_IDLE
+
+    # MOTOR_START
+
+    # MOTOR_STOP
+
+    # RATCHET
+
+    # SONAR
+
+    # TICK_TACK
+
+    ° Tiergeräusche:
+
+    # CAT_PUR
+
+    # DOG_BARK_1
+
+    #DOG_BARK_"
+
+    # DOG_GROWL
+
+    # DOG_SNIFF
+
+    # DOG_WHINE
+
+    # ELEPHANT_CALL
+
+    # INSECT_BUZZ_1
+
+    # INSECT_BUZZ_2
+
+    # INSECT_CHIRP
+
+    # SNAKE_HISS
+
+    # SNAKE_RATTLE
+
+    # T_REX_ROAR
+
+    ° Numbers:
+
+    # ZERO
+
+    # ONE
+
+    # TWO
+
+    # THREE
+
+    # FOUR
+
+    # FIVE
+
+    # SIX
+
+    # SEVEN
+
+    # EIGHT
+
+    # NINE
+
+    # TEN
+
+    ° Systemsounds:
+
+    # CLICK
+
+    # CONFIRM
+
+    # GENERAL_ALERT
+
+    # OVERPOWER
+
+    # READY
+
+
+    - Schriftarten/Schriftzüge:
+
+    ° class Font(family=None, size=12, bold=False, monospace=False, lang=None, script=None):
+
+    # family: Standardschriftart
+
+    # size: Standardschriftgröße
+
+    # bold: fett
+
+    # monospace: True bewirkt Bevorzugung von nichtproportionalen Schriftarten
+
+    # lang: Sprachcode wie 'en'
+
+    # script: Unicodescript, wie 'Runr'
+
+    ° DEFAULT=Font("Lucida", 12)
+
+    ° family: Gibt Standardschriftart aus
+
+    ° style: "Regular" oder "Bold", für normal oder fett
+
+    ° width: gibt die Breite des breitesen Buchstaben aus
+
+    ° height: gibt Höhe der Schriftart aus
+
+    ° text_width(text): gibt die Breite von text aus, wenn er mit der Standartschriftart ausgegeben würde
+
+    ° text_height(text): gibt die Höhe von text aus, wenn er mit der Standartschriftart ausgegeben würde
+
+
+    - Image Manipulation:
+
+    ° class Image(source, sub=False): source ist ein Bild oder string, wenn sub=True, werden noch x1, x2, y1, y2, weil bei sub=True das Objekt wie ein Unterbild vom Quellbild behandelt wird. Dann sind (x1, y1) die Linksoben- und (x2, y2) die Rechtsuntenkoordinaten.
+
+    ° emty(width=<screen width>, height=<scree height>)  [Vorsicht! static, also nicht auf Objekte anzuwenden!] width und height sind Breite und Höhe des Leeren Bildes, das erzeugt wird. Gibt ein Bild ZURÜCK, nicht aus!
+
+
+    - Text auf Bilder:
+
+    ° draw_text(x, y, text, text_color=Color.BLACK, background_color=None): (x, y), wo der Text text in der Farbe text_color mit Hintergrundfarbe background_color geschrieben wird
+
+    ° print(*args, sep=" ", end="\n"): Schreibt über Bilder, Rest gleich zu 1.1.1.4 Screen
+
+    ° set_font(font): setzt die Schriftart auf font
+
+
+    - Bilder auf Bilder:
+
+    draw_image(x, y, source, transparent=None): (x, y) ist der Linksoben-Eckpunkt des Bildes, source ist das Bild oder ein String; transparent ist die Farbe (?)
+
+
+    - Normale Formen malen:
+
+    ° draw_pixel(x, y, color=Color.BLACK): (x, y) Pixelposition und color als Pixelfarbe
+
+    ° draw_line(x1, y1, x2, y2, width=1, color=Color.BLACK): (x1, y1) als Anfangs und (x2, y2) als Endpunkt der Strecke; width deren Dicke in Pixeln und color die Farbe
+
+    ° draw_box(x1, y1, x2, y2, r=0, fill=False, color=Color.BLACK): (x1, y1) Punkt Linksoben und (x2, y2) Rechtsunten, r der Radius der Ecken; fill, ob das Rechteck gefüllt wird und color die Farbe
+
+    ° draw_circle(x, y, r, fill=False, color=Color.BLACK): (x, y) Mittelpunkt, r Radius, fill, ob der Kreis gefüllt wird und color die Farbe
+
+
+    - Bildproportionen:
+
+    ° width: gibt die Breite des Bildes in Pixeln aus
+
+    ° height: gibt die Höhe des Bildes in Pixeln aus
+
+
+    - Ersetzen eines Bildes:
+
+    ° clear(): Setzt alle Pixel des Bildes auf Color.WHITE
+
+    ° load_image(source): Leert den Bildschirm und malt das Bild source zentriert auf dem Bildschirm
+
+
+    - Speichern:
+
+    save(filename): Speichert den Screen als ".png" unter dem Dateipfad und Dateinamen filename
+
+
+
+
+massaging
+    - #
+##
+

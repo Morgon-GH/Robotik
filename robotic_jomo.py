@@ -144,8 +144,8 @@ class Robotic_jomo(Customclass_jomo):
         ## send Nachricht senden
 
     
-    def __init__(self, wheel_diameter=45, axle_track=100,
-     driveports=(Port.A, Port.D), extports=(Port.B, Port.C), sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}, bigExt_=False, makeredo_=True, screenset_=True, ev3_=True):
+    def __init__(self, wheel_diameter=45, axle_track=100, driveports=(Port.A, Port.D), extports=(Port.B, Port.C),
+     sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}, bigExt_=False, makeredo_=True, screenset_=True, ev3_=True):
 
         #EV3
         if ev3_==True:
