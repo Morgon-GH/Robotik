@@ -50,9 +50,11 @@ class Robotic_jomo(Customclass_jomo):
 
             def set_surround(self, headborder=True, downborder=False, up=False, down=False):
                 ##
+                pass
 
             def inc(self, elment):
                 ##
+                pass
 
         def __init__(self,setter_=True):
             self.setter=Screensetter_jomo()
@@ -62,38 +64,47 @@ class Robotic_jomo(Customclass_jomo):
 
     class Speaker_jomo(Customclass_jomo):
         #fill
+        pass
 
 
     #überschreiben
     class TouchSensor_jomo(TouchSensor, Customclass_jomo):
         #fill
+        pass
     
 
     class ColorSensor_jomo(ColorSensor, Customclass_jomo):
         #fill
+        pass
     
 
     class InfraredSensor_jomo(InfraredSensor, Customclass_jomo):
         #fill
+        pass
     
 
     class UltrasonicSensor_jomo(UltrasonicSensor, Customclass_jomo):
         #fill
+        pass
     
 
     class GyroSensor_jomo(GyroSensor, Customclass_jomo):
         #fill    
+        pass
 
 
     class Motor_jomo(Motor, Customclass_jomo):
         #fill
+        pass
 
     
     class DriveBase_jomo(DriveBase, Customclass_jomo):
         #fill
+        pass
 
         def follow_line(self, line_color=Color.BLACK):
             ##
+            pass
 
         ## Fahre bis Ultraschallsensor diesunddas..
 
@@ -111,15 +122,18 @@ class Robotic_jomo(Customclass_jomo):
     #neue, eigene Klassen
     class Extension_jomo(Motor_jomo):
         #fill
+        pass
 
     class BgExtension_jomo(Customclass_jomo, DriveBase_jomo):
         #fill
+        pass
 
         #alle Methoden von DriveBase überschreiben
     
 
     class Message_jomo(Customclass_jomo):
         #fill
+        pass
 
         ## connect stelle verbindung her
 
