@@ -15,7 +15,7 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 # Create your objects here.
 ev3 = EV3Brick()
 color = ColorSensor(Port.S2)
-motor = Motor(B)
+motor = Motor(Port.B)
 
 # Write your program here.
 while True:
