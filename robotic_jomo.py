@@ -52,6 +52,10 @@ class Robotic_jomo(Customclass_jomo):
                 ##
                 pass
 
+            def refresh_surround(self):
+                ##
+                pass
+
             def inc(self, elment):
                 ##
                 pass
