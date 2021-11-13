@@ -51,7 +51,9 @@ II. Die Module
       *Methoden
         #
       *Attribute
-        ^ self.scs [Screensetter, siehe media_jomo -> Screensetter_jomo, zum Einfachen konfiguren des Bildschirms]
+        ^ self.ev3 [EV3, siehe micropython]
+        ^ self.speak [Speaker, siehe media_jomo -> Speaker_jomo, fürs OOP]
+        ^ self.screen [Screen_jomo, siehe robotic_jomo]
         ^ self.do [RedoINTE_jomo, siehe redoing_jomo -> RedoINTE_jomo, um die Builtins zu nutzen]
 
         ^ self.aM [Motor_jomo, siehe Motor_jomo, wird zur Fahrtsteuerung. Das Port kann man übergeben, aber aM wird immer zum Fahrtmotor]
@@ -66,8 +68,17 @@ II. Die Module
         ^ self.s3 [Sensor an Port 3]
         ^ self.s4 [Sensor an Port 4]
 
-        ^ self.drat [Dictionary mit Attributen zum Roboter]:
-            ° #
+        ^ self.sys_types [Dictionary mit Attributen zum Roboter]:
+            {'version': version,
+             'compatibility': compatibility,
+             'robo': True,
+             'sys': {'ev3': type(self.ev3), 'speak': type(self.speak), 'screen': type(self.screen), 'do': type(self.do)},
+             'devices': {'motors': {'aM': type(self.aM), 'bM': type(self.bM), 'cM': type(self.cM), 'dM': type(self.dM)},
+                         'seonsors': {'s1': type(self.s1), 's2': type(self.s2), 's3': type(self.s3), 's4': type(self.s4)}},
+             'db': (self.aM, self.bM),
+             'ext': (self.cM, self.dM),
+             'dbports': driveports,
+             'extports': extports}
 
     -Basic_jomo
       #

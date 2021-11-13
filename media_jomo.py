@@ -38,7 +38,7 @@ import gc
 class Picturefile_jomo(Customclass_jomo):
     #fill
     def __init__(self, picture=' ', picture_=False):
-        if sound_=True:
+        if picture_==True:
             self.picture=picture
         else:
             self.picture=' '
@@ -53,13 +53,11 @@ class Picturefile_jomo(Customclass_jomo):
 
 class Audiofile_jomo(Customclass_jomo):
     def __init__(self, sound=' ', sound_=False):
-        if sound_=True:
+        if sound_==True:
             self.sound=sound
         else:
             self.sound=' '
         ##
-
-    def _reinit(self, sound=' ', sound_=True)
 
     def play(self):
         ##

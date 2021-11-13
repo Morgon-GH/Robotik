@@ -61,7 +61,12 @@ class Robotic_jomo(Customclass_jomo):
                 pass
 
         def __init__(self,setter_=True):
-            self.setter=Screensetter_jomo()
+            if setter_==True:
+                self.setter=Screensetter_jomo()
+            elif setter_==False:
+                self.setter=None
+            else:
+                self._demit_warning(todw=3)
 
     #fill
     
@@ -163,18 +168,30 @@ class Robotic_jomo(Customclass_jomo):
 
     
     def __init__(self, wheel_diameter=45, axle_track=100, driveports=(Port.A, Port.D), extports=(Port.B, Port.C),
-     sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}, bigExt_=False, makeredo_=True, screenset_=True, ev3_=True):
+     sensor={'S1': 'gyro', 'S2': 'touch', 'S3': 'touch', 'S4': 'ultrasonic'}, bigExt_=False, makeredo_=True, screenset_=True, ev3_=True, version=(1, 0), compatibility=((1, 0), (1, 0))):
 
         #EV3
         if ev3_==True:
             self.ev3=EV3Brick()
             self.speak=Speaker_jomo()
-            self.screen=Screen_jomo(setter_=screenset_)
-
-        else:
+            if screenset_==True or screenset_!=True:
+                self.screen=Screen_jomo(setter_=screenset_)
+            else:
+                self._demit_warning(todw=3)
+        elif ev3==False:
             self.ev3=None
             self.speak=None
             self.screen=None
+        else:
+            self._demit_warning(todw=3)
+
+        #Redoer "do"
+        if makeredo_==True:
+            self.do=Redoing_jomo()
+        elif makeredo_==False:
+            self.do=None
+        else:
+            self._demit_warning(todw=3)
         
         #Motors
         if driveports[0]!==' ':
@@ -262,7 +279,16 @@ class Robotic_jomo(Customclass_jomo):
             self.s4=None
 
         #dratconfiguring
-        self.drat={'version': (1, 0), 'robo': True, 'devices': {'motors': {'aM': self.aM, 'bM': self.bM, 'cM': self.cM, 'dM': self.dM}}}
+        self.sys_types={'version': version,
+         'compatibility': compatibility,
+         'robo': True,
+         'sys': {'ev3': type(self.ev3), 'speak': type(self.speak), 'screen': type(self.screen), 'do': type(self.do)},
+         'devices': {'motors': {'aM': type(self.aM), 'bM': type(self.bM), 'cM': type(self.cM), 'dM': type(self.dM)}, 
+                     'seonsors': {'s1': type(self.s1), 's2': type(self.s2), 's3': type(self.s3), 's4': type(self.s4)}},
+         'db': (self.aM, self.bM),
+         'ext': (self.cM, self.dM),
+         'dbports': driveports,
+         'extports': extports}
 
     def redo_(self, redo=1):
         if redo==0:
@@ -288,8 +314,18 @@ class Robotic_jomo(Customclass_jomo):
         elif redo==10:
             do.redo10()
 
-    def config_drat(self, changes={}):
-        pass
+    def config_sys_types_(self, change=('keyword_default', 'value_default')):
+        self.sys_types[change[0]]=change[1]
+
+    def cst_(self, change=('keyword_default', 'value_default')):
+        self.config_sys_types_(change)
+
+    def config_sys_types(self, changes=(('keyword_default', 'value_default'))):
+        for i in range(len(changes)):
+            self.config_sys_types_(change=(changes[i][0], changes[i][1]))
+
+    def cst(self, changes=(('keyword_default', 'value_default'))):
+        self.config_sys_types(changes)
 
     def drive_speed(self, speed=100):
         pass
@@ -297,5 +333,19 @@ class Robotic_jomo(Customclass_jomo):
     def drive_angle(self, angle=360, angleset=False, angleset=0):
         pass
 
-    def check_battery(self):
-        pass
+    def check_battery_voltage(self):
+        return self.ev3.voltage()
+
+    def cbv(self):
+        self.check_battery_voltage()
+
+    def check_battery_current(self, critical=50):
+        bs=self.ev3.current()
+        if bs<=critical:
+            self._demit_warning(todw=3, additional=bs)
+        else:
+            pass
+        return bs
+
+    def cbc(self):
+        self.check_battery_current(self)

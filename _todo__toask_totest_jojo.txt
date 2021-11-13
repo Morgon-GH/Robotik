@@ -23,3 +23,6 @@ TO DO:                                                                          
 Tipps etc.:
     - "@classmethod" macht eine Klassenmethode
     - "@staticmethod" macht eine statische Methode
+
+
+@Moritz, wie OOP wollen wirs machen, weil sonst für Screen eine Panelklasse, mit Errors falls man überlagern will etc.
