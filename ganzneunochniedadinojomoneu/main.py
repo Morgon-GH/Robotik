@@ -24,8 +24,5 @@ while True:
     ev3.screen.clear()
     ev3.screen.print(ambient)
     if ambient < 11:
-        ev3.speaker.beep()
-        motor.run_angle(100,10)
-        motor.run_angle(100,-10)5
-        ev3.speaker.beep()
-
+        motor.run_angle(4000 , 40)
+        motor.run_angle(4000,-40)
