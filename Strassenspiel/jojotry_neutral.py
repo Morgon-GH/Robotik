@@ -70,14 +70,14 @@ class Strassengame(EV3Brick):
             if self.test_==True:
                 print("Thread wurde gestartet, in Kürze wird die Straße wahrscheinlich anfangen zu laufen")
 
-            while self.run_=True:
+            while self.run_==True:
                 pass
 
             if self.test_==True:
                 print("Thread wurde beendet. Die Straße wird nun in diesem Thread nicht mehr laufen. ")
 
         def run_(self, level=0):
-            while self.run_=True:
+            while self.run_==True:
                 pass
 
         
@@ -151,21 +151,21 @@ class Strassengame(EV3Brick):
         text="Willkommen! Du willst spielen? Dann bist du hier genau richtig! Drücke den Mittleren Knopf, um fortzufahren. ")
         while not (Button.CENTER in self.buttons.pressed()):
             pass
-        if self.test_=True:
+        if self.test_==True:
             print("Teil 1 ist erfolgreich abgelaufen. ")
 
         # Teil 2: Menü (Anleitung, Spiel beginnen)
         opt=self.sel_menu_item(["Erst Anleitung", "Spiel sofort beginnen"])
-        if self.test_=True:
+        if self.test_==True:
             print("Teil 2 ist erfolgreich abgelaufen. ")
 
         # Teil 3: Anleitung bzw. Spiel beginnen
-        if opt=0:
+        if opt==0:
             self.anleitung()
         else:
             pass
         level=self.sel_menu_item(["Leicht", "Eher Leicht", "Mittel", "Eher Schwer", "Schwer"])
-        if self.test_=True:
+        if self.test_==True:
             print("Teil 3 ist erfolgreich abgelaufen. ")
 
         # Teil 4: CENTER-Abfrage und Spiel
@@ -174,10 +174,10 @@ class Strassengame(EV3Brick):
             pass
         self.screen.clear()
         wait(2000)
-        if self.test_=True:
+        if self.test_==True:
             print("self.game() wird jetzt gestartet. ")
         self.game(level=level)
-        if self.test_=True:
+        if self.test_==True:
             print("Teil 4 ist erfolgreich abgelaufen. ")
 
 
