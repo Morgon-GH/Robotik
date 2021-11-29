@@ -28,6 +28,8 @@ from pybricks.media.ev3dev import SoundFile, ImageFile
 
 import threading
 
+import random
+
 import time
 
 
@@ -47,9 +49,10 @@ class Strassengame(EV3Brick):
                 pass
             self.id=id
             self.tempo=100
-            self.hinbeschleunigen={1: 1}
+            self.hinbeschleunigen={}
             self.test_=test_
             self.run_=True
+            self.end_=False
             if self.test_==True:
                 print("Straße ist betriebsbereit. ")
 
@@ -66,36 +69,53 @@ class Strassengame(EV3Brick):
             if self.test_==True:
                 print("Neuer Term zum Hinbeschleunigen wurde erfolgreich geladen. ")
         
-        def run(self):
+        def run(self): ######################################################################################################################FINE
             if self.test_==True:
                 print("Thread wurde gestartet, in Kürze wird die Straße wahrscheinlich anfangen zu laufen")
 
-            while self.run_=True:
-                pass
+            while True:
+                self.run_()
+                if self.end_==False:
+                    continue
+                elif self.end_==True:
+                    break
+                else:
+                    pass
 
             if self.test_==True:
                 print("Thread wurde beendet. Die Straße wird nun in diesem Thread nicht mehr laufen. ")
 
-        def run_(self, level=0):
+        def run_(self):
             while self.run_=True:
                 pass
 
-        
+        def run_beschleuniger(self, level=0):
+            if self.test_==True:
+                print("Thread wurde gestartet, in Kürze wird die Straße wahrscheinlich anfangen zu laufen")
+
+            pass
+
+            if self.test_==True:
+                print("Thread wurde beendet. Die Straße wird nun in diesem Thread nicht mehr laufen. ")
+
+        def run_tempo(self, level=0):
+            if self.test_==True:
+                print("Thread wurde gestartet, in Kürze wird die Straße wahrscheinlich anfangen zu laufen")
+
+            pass
+
+            if self.test_==True:
+                print("Thread wurde beendet. Die Straße wird nun in diesem Thread nicht mehr laufen. ")
 
     def __init__(self, test_=False): ######################################################################################################################FINE
         self.l=Straße(id="l", port=Port.A, test_=test_)
         self.m=Straße(id="m", port=Port.B, test_=test_)
         self.r=Straße(id="r", port=Port.C, test_=test_)
-        self.timemanager=Straße(id="t", port="None", test_=test_)
+        self.beschleuniger=Straße(id="beschleuniger", port=None, test_=test_)
+        self.tempo=Straße(id="tempo", port=None, test_=test_)
         self.test_=test_
         if self.test_==True:
             print("Straßengame wurde betriebsfertig gemacht. ")
-
-    def stelleBeschleunigen(self, level=0):
-        pass
-
-    def stelleZielgeschwindigkeiten(self, level=0):
-        pass
     
     def sel_menu_item(self, args=[]): ######################################################################################################################FINE
         self.screen.clear()
@@ -133,7 +153,31 @@ class Strassengame(EV3Brick):
                 emph=(emph-1)%len(texte)
 
     def game(self, level=0):
-        self.timemanager.run_(level=level)
+        #WAS BEDEUTET WELCHES LEVEL?
+        # Schwierigkeitsstufe    | Beschleunigen                                                                      | Zielgeschwindigkeit
+        # Leicht(0)              | Pol vom Grad 2;              wird per randint am Anfang festgelegt, dann konstant  | Variiert alle 5 Sekunden
+        # Eher Leicht(1)         | Pol vom Grad 3;              wird per randint am Anfang festgelegt, dann konstant  | Variiert alle randint(4, 8) Sekunden
+        # Mittel(2)              | Pol vom Grad randint(2, 5);  Variiert alle 5 Sekunden                              | Variiert alle randint(3, 7) Sekunden
+        # Eher Schwer(3)         | Pol vom Grad randint(2, 6);  Variiert alle randint(4, 8) Sek                       | Variiert alle randint(2, 6) Sekunden
+        # Schwer(4)              | Pol vom Grad randint(3, 6);  Variiert alle randint(3, 7) Sek                       | Variiert alle randint(1, 5) Sekunden
+        # ----------------------------------------------------------------------------------------------------------------------------------------------
+        # 5 Schwierigkeiten      |  Polynomiell;                 fest/(variabel) variierend                           | (variabel) variierend              (RANDINT-variator)
+
+        if level>=2:
+            self.beschleuniger.run_beschleuniger(level=level)
+        elif level=1:
+            self.l.hinbeschleunigen[0]=random.randint(1, 10); self.l.hinbeschleunigen[1]=random.randint(1, 10); self.l.hinbeschleunigen[2]=random.randint(1, 10)
+             self.l.hinbeschleunigen[3]=random.randint(1, 10)
+            self.m.hinbeschleunigen[0]=random.randint(1, 10); self.m.hinbeschleunigen[1]=random.randint(1, 10); self.m.hinbeschleunigen[2]=random.randint(1, 10)
+             self.m.hinbeschleunigen[3]=random.randint(1, 10)
+            self.r.hinbeschleunigen[0]=random.randint(1, 10); self.r.hinbeschleunigen[1]=random.randint(1, 10); self.r.hinbeschleunigen[2]=random.randint(1, 10)
+             self.r.hinbeschleunigen[3]=random.randint(1, 10)
+        elif level=0:
+            self.l.hinbeschleunigen[0]=random.randint(1, 10); self.l.hinbeschleunigen[1]=random.randint(1, 10); self.l.hinbeschleunigen[2]=random.randint(1, 10)
+            self.m.hinbeschleunigen[0]=random.randint(1, 10); self.m.hinbeschleunigen[1]=random.randint(1, 10); self.m.hinbeschleunigen[2]=random.randint(1, 10)
+            self.r.hinbeschleunigen[0]=random.randint(1, 10); self.r.hinbeschleunigen[1]=random.randint(1, 10); self.r.hinbeschleunigen[2]=random.randint(1, 10)
+        else:
+            pass
         self.l.run()
         self.r.run()
         self.m.run()
@@ -165,6 +209,7 @@ class Strassengame(EV3Brick):
         else:
             pass
         level=self.sel_menu_item(["Leicht", "Eher Leicht", "Mittel", "Eher Schwer", "Schwer"])
+
         if self.test_=True:
             print("Teil 3 ist erfolgreich abgelaufen. ")
 
