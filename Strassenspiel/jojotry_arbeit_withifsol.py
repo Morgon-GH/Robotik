@@ -62,12 +62,12 @@ class Strassengame(EV3Brick):
             intime=time.perf_counter()
             if abs(self.mot.speed)>self.tempo:
                 while self.mot.speed()!=self.tempo:
-                    self.mot.run_speed(-self.hinbeschleunigen[6]*(time.perf_counter-intime)**6+self.hinbeschleunigen[5]*(time.perf_counter-intime)**5-self.hinbeschleunigen[4]*(time.perf_counter-intime)**4+self.hinbeschleunigen[3]*(time.perf_counter-intime)**3-self.hinbeschleunigen[2]*(time.perf_counter-intime)**2+self.hinbeschleunigen[1]*(time.perf_counter-intime)**1-self.hinbeschleunigen[0]*(time.perf_counter-intime)**0)
+                    self.mot.run_speed(abs(-self.hinbeschleunigen[6]*(time.perf_counter-intime)**6+self.hinbeschleunigen[5]*(time.perf_counter-intime)**5-self.hinbeschleunigen[4]*(time.perf_counter-intime)**4+self.hinbeschleunigen[3]*(time.perf_counter-intime)**3-self.hinbeschleunigen[2]*(time.perf_counter-intime)**2+self.hinbeschleunigen[1]*(time.perf_counter-intime)**1-self.hinbeschleunigen[0]*(time.perf_counter-intime)**0))
                     if self.run_==False:
                         self.mot.hold()
             elif abs(self.mot.speed)<self.tempo:
                 while self.mot.speed()!=self.tempo:
-                    self.mot.run_speed(self.hinbeschleunigen[6]*(time.perf_counter-intime)**6-self.hinbeschleunigen[5]*(time.perf_counter-intime)**5+self.hinbeschleunigen[4]*(time.perf_counter-intime)**4-self.hinbeschleunigen[3]*(time.perf_counter-intime)**3+self.hinbeschleunigen[2]*(time.perf_counter-intime)**2-self.hinbeschleunigen[1]*(time.perf_counter-intime)**1+self.hinbeschleunigen[0]*(time.perf_counter-intime)**0)
+                    self.mot.run_speed(abs(self.hinbeschleunigen[6]*(time.perf_counter-intime)**6-self.hinbeschleunigen[5]*(time.perf_counter-intime)**5+self.hinbeschleunigen[4]*(time.perf_counter-intime)**4-self.hinbeschleunigen[3]*(time.perf_counter-intime)**3+self.hinbeschleunigen[2]*(time.perf_counter-intime)**2-self.hinbeschleunigen[1]*(time.perf_counter-intime)**1+self.hinbeschleunigen[0]*(time.perf_counter-intime)**0))
                     if self.run_==False:
                         self.mot.hold()
             elif abs(self.mot.speed())=self.tempo:
@@ -81,6 +81,8 @@ class Strassengame(EV3Brick):
                 print("Thread wurde gestartet, in Kürze wird die Straße wahrscheinlich anfangen zu laufen")
 
             while True:
+                while self.run_==False:
+                    pass
                 self.run_()
                 if self.end_==False:
                     continue
@@ -95,12 +97,15 @@ class Strassengame(EV3Brick):
         def run_(self): ######################################################################################################################FINE
             while self.run_=True:
                 self.beschleunige_hin()
-                self.mot.run_speed(self.tempo)
+                self.mot.run_speed(self.tempo) #angenommen, dass das Signal an den Motor gesendet wird und dann sofort im Programmablauf fortgefahren wird
+                if self.run_==False:
+                    self.mot.hold()
 
     def __init__(self, test_=False): ######################################################################################################################FINE
         self.l=Straße(id="l", port=Port.A, test_=test_)
         self.m=Straße(id="m", port=Port.B, test_=test_)
         self.r=Straße(id="r", port=Port.C, test_=test_)
+        self.end_=False
         self.test_=test_
         if self.test_==True:
             print("Straßengame wurde betriebsfertig gemacht. ")
@@ -215,13 +220,26 @@ class Strassengame(EV3Brick):
             self.m.tempo=random(1, 200)
             self.r.tempo=random(1, 200)
             global starttime=time.perf_counter()
-            while not (Button.CENTER in self.buttons.pressed()):
-                self.screen.clear()
-                self.screen.print("Dein Score ist: " +str(int((time.perf_counter()-starttime)*100)))
-                self.screen.print("[Mitte=Unterbrechung]")
-                if (int(time.perf_counter()-starttime)>=(tempo*tempo_)):
-                    self.l.tempo=random(1, 200); self.m.tempo=random(1, 200); self.r.tempo=random(1, 200)
-                    tempo_=tempo_+1
+            while self.end_==False:
+                while not (Button.CENTER in self.buttons.pressed()):
+                    self.screen.clear()
+                    self.screen.print("Dein Score ist: " +str(int((time.perf_counter()-starttime)*100)))
+                    self.screen.print("[Mitte=Unterbrechung]")
+                    if (int(time.perf_counter()-starttime)>=(tempo*tempo_)):
+                        self.l.tempo=random(1, 200); self.m.tempo=random(1, 200); self.r.tempo=random(1, 200)
+                        tempo_=tempo_+1
+                foo=self.sel_menu_item(["- Fortfahren -", "- Zum Hauptmenü -"])
+                if foo=0:
+                    continue
+                elif foo=1:
+                    self.end_=True
+                    self.l.end_=True
+                    self.m.end_=True
+                    self.r.end_=True
+                    self.beschleuniger.end_=True
+                    self.tempo.end_=True
+                else:
+                    pass
         
         elif level==1:
             tempo=0
@@ -238,12 +256,25 @@ class Strassengame(EV3Brick):
             self.r.hinbeschleunigen[2]=random.randint(1, 10)
             self.r.hinbeschleunigen[3]=random.randint(1, 10)
             global starttime=time.perf_counter()
-            while not (Button.CENTER in self.buttons.pressed()):
-                self.screen.clear()
-                self.screen.print("Dein Score ist: " +str(int((time.perf_counter()-starttime)*100)))
-                self.screen.print("[Mitte=Unterbrechung]")
-                if (int(time.perf_counter()-starttime)>=(tempo)):
-                    self.l.tempo=random(1, 200); self.m.tempo=random(1, 200); self.r.tempo=random(1, 200); tempo=randint(4, 8)+int(time.perf_counter()-starttime)
+            while self.end_==False:
+                while not (Button.CENTER in self.buttons.pressed()):
+                    self.screen.clear()
+                    self.screen.print("Dein Score ist: " +str(int((time.perf_counter()-starttime)*100)))
+                    self.screen.print("[Mitte=Unterbrechung]")
+                    if (int(time.perf_counter()-starttime)>=(tempo)):
+                        self.l.tempo=random(1, 200); self.m.tempo=random(1, 200); self.r.tempo=random(1, 200); tempo=randint(4, 8)+int(time.perf_counter()-starttime)
+                foo=self.sel_menu_item(["- Fortfahren -", "- Zum Hauptmenü -"])
+                if foo=0:
+                    continue
+                elif foo=1:
+                    self.end_=True
+                    self.l.end_=True
+                    self.m.end_=True
+                    self.r.end_=True
+                    self.beschleuniger.end_=True
+                    self.tempo.end_=True
+                else:
+                    pass
         
         elif level==2:
             beschl=0
@@ -251,54 +282,96 @@ class Strassengame(EV3Brick):
             beschl_=1
             self.poly_beschl(min_polgr=2, max_polgr=5)
             global starttime=time.perf_counter()
-            while not (Button.CENTER in self.buttons.pressed()):
-                self.screen.clear()
-                self.screen.print("Dein Score ist: " +str(int((time.perf_counter()-starttime)*100)))
-                self.screen.print("[Mitte=Unterbrechung]")
-                if (int(time.perf_counter()-starttime)>=(tempo)):
-                    self.l.tempo=random(1, 200)
-                    self.m.tempo=random(1, 200)
-                    self.r.tempo=random(1, 200)
-                    tempo=randint(3, 7)+int(time.perf_counter()-starttime)
-                elif (int(time.perf_counter()-starttime)>=(beschl*beschl_)):
-                    self.poly_beschl(min_polgr=2, max_polgr=5)
-                    beschl_=beschl_+1
+            while self.end_==False:
+                while not (Button.CENTER in self.buttons.pressed()):
+                    self.screen.clear()
+                    self.screen.print("Dein Score ist: " +str(int((time.perf_counter()-starttime)*100)))
+                    self.screen.print("[Mitte=Unterbrechung]")
+                    if (int(time.perf_counter()-starttime)>=(tempo)):
+                        self.l.tempo=random(1, 200)
+                        self.m.tempo=random(1, 200)
+                        self.r.tempo=random(1, 200)
+                        tempo=randint(3, 7)+int(time.perf_counter()-starttime)
+                    elif (int(time.perf_counter()-starttime)>=(beschl*beschl_)):
+                        self.poly_beschl(min_polgr=2, max_polgr=5)
+                        beschl_=beschl_+1
+                foo=self.sel_menu_item(["- Fortfahren -", "- Zum Hauptmenü -"])
+                if foo=0:
+                    continue
+                elif foo=1:
+                    self.end_=True
+                    self.l.end_=True
+                    self.m.end_=True
+                    self.r.end_=True
+                    self.beschleuniger.end_=True
+                    self.tempo.end_=True
+                else:
+                    pass
         
         elif level==3:
             beschl=0
             tempo=0
             self.poly_beschl(min_polgr=2, max_polgr=5)
             global starttime=time.perf_counter()
-            while not (Button.CENTER in self.buttons.pressed()):
-                self.screen.clear()
-                self.screen.print("Dein Score ist: " +str(int((time.perf_counter()-starttime)*100)))
-                self.screen.print("[Mitte=Unterbrechung]")
-                if (int(time.perf_counter()-starttime)>=(tempo)):
-                    self.l.tempo=random(1, 200)
-                    self.m.tempo=random(1, 200)
-                    self.r.tempo=random(1, 200)
-                    tempo=random.randint(2, 6)+int(time.perf_counter()-starttime)
-                elif (int(time.perf_counter()-starttime)>=(tempo)):
-                    self.poly_beschl(min_polgr=2, max_polgr=6)
-                    beschl=random.randint(4, 8)+int(time.perf_counter()-starttime)
+            while self.end_==False:
+                while not (Button.CENTER in self.buttons.pressed()):
+                    self.screen.clear()
+                    self.screen.print("Dein Score ist: " +str(int((time.perf_counter()-starttime)*100)))
+                    self.screen.print("[Mitte=Unterbrechung]")
+                    if (int(time.perf_counter()-starttime)>=(tempo)):
+                        self.l.tempo=random(1, 200)
+                        self.m.tempo=random(1, 200)
+                        self.r.tempo=random(1, 200)
+                        tempo=random.randint(2, 6)+int(time.perf_counter()-starttime)
+                    elif (int(time.perf_counter()-starttime)>=(tempo)):
+                        self.poly_beschl(min_polgr=2, max_polgr=6)
+                        beschl=random.randint(4, 8)+int(time.perf_counter()-starttime)
+                foo=self.sel_menu_item(["- Fortfahren -", "- Zum Hauptmenü -"])
+                if foo=0:
+                    continue
+                elif foo=1:
+                    self.end_=True
+                    self.l.end_=True
+                    self.m.end_=True
+                    self.r.end_=True
+                    self.beschleuniger.end_=True
+                    self.tempo.end_=True
+                else:
+                    pass
         
         elif level==4:
             beschl=0
             temp=0
             self.poly_beschl(min_polgr=2, max_polgr=5)
             global starttime=time.perf_counter()
-            while not (Button.CENTER in self.buttons.pressed()):
-                self.screen.clear()
-                self.screen.print("Dein Score ist: " +str(int((time.perf_counter()-starttime)*100)))
-                self.screen.print("[Mitte=Unterbrechung]")
-                if (int(time.perf_counter()-starttime)>=(tempo)):
-                    self.l.tempo=random(1, 200)
-                    self.m.tempo=random(1, 200)
-                    self.r.tempo=random(1, 200)
-                    tempo=random.randint(1, 5)+int(time.perf_counter()-starttime)
-                elif (int(time.perf_counter()-starttime)>=(tempo)):
-                    self.poly_beschl(min_polgr=3, max_polgr=6)
-                    beschl=random.randint(3, 7)+int(time.perf_counter()-starttime)
+            while self.end_==False:
+                while not (Button.CENTER in self.buttons.pressed()):
+                    self.screen.clear()
+                    self.screen.print("Dein Score ist: " +str(int((time.perf_counter()-starttime)*100)))
+                    self.screen.print("[Mitte=Unterbrechung]")
+                    if (int(time.perf_counter()-starttime)>=(tempo)):
+                        self.l.tempo=random(1, 200)
+                        self.m.tempo=random(1, 200)
+                        self.r.tempo=random(1, 200)
+                        tempo=random.randint(1, 5)+int(time.perf_counter()-starttime)
+                    elif (int(time.perf_counter()-starttime)>=(tempo)):
+                        self.poly_beschl(min_polgr=3, max_polgr=6)
+                        beschl=random.randint(3, 7)+int(time.perf_counter()-starttime)
+                self.l.run_=False
+                self.m.run_=False
+                self.r.run_=False
+                foo=self.sel_menu_item(["- Fortfahren -", "- Zum Hauptmenü -"])
+                if foo=0:
+                    continue
+                elif foo=1:
+                    self.end_=True
+                    self.l.end_=True
+                    self.m.end_=True
+                    self.r.end_=True
+                    self.beschleuniger.end_=True
+                    self.tempo.end_=True
+                else:
+                    pass
         
         else:
             self.screen.print("Hier ist ein Fehler passiert! Hole einen Techniker!")

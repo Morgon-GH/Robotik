@@ -181,10 +181,13 @@ class Strassengame(EV3Brick):
         self.l.run()
         self.r.run()
         self.m.run()
+        self.beschleuniger.run_beschleuniger(level=level)
+        self.tempo.run_tempo(level=level)
         global starttime=time.perf_counter()
         while not (Button.CENTER in self.buttons.pressed()):
             self.screen.clear()
             self.screen.print("Dein Score ist: " +str(int((time.perf_counter()-starttime)*100)))
+            self.screen.print("[Mitte=Unterbrechung]")
 
     def advertisement(self):
         pass                        #optional
@@ -221,7 +224,18 @@ class Strassengame(EV3Brick):
         wait(2000)
         if self.test_=True:
             print("self.game() wird jetzt gestartet. ")
-        self.game(level=level)
+        self.l.run()
+        self.r.run()
+        self.m.run()
+        self.beschleuniger.run_beschleuniger(level=level)
+        self.tempo.run_tempo(level=level)
+        global starttime=time.perf_counter()
+        while end_==False:
+            while not (Button.CENTER in self.buttons.pressed()):
+                self.screen.clear()
+                self.screen.print("Dein Score ist: " +str(int((time.perf_counter()-starttime)*100)))
+                self.screen.print("[Mitte=Unterbrechung]")
+            
         if self.test_=True:
             print("Teil 4 ist erfolgreich abgelaufen. ")
 
