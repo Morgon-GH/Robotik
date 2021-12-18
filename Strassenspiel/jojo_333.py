@@ -229,15 +229,13 @@ class Strassengame(EV3Brick):
                         self.l.tempo=random(1, 200); self.m.tempo=random(1, 200); self.r.tempo=random(1, 200)
                         tempo_=tempo_+1
                 foo=self.sel_menu_item(["- Fortfahren -", "- Zum Hauptmenü -"])
-                if foo=0:
+                if foo==0:
                     continue
-                elif foo=1:
+                elif foo==1:
                     self.end_=True
                     self.l.end_=True
                     self.m.end_=True
                     self.r.end_=True
-                    self.beschleuniger.end_=True
-                    self.tempo.end_=True
                 else:
                     pass
         
@@ -255,7 +253,7 @@ class Strassengame(EV3Brick):
             self.r.hinbeschleunigen[1]=random.randint(1, 10)
             self.r.hinbeschleunigen[2]=random.randint(1, 10)
             self.r.hinbeschleunigen[3]=random.randint(1, 10)
-            global starttime=time.perf_counter()
+            starttime=time.perf_counter()
             while self.end_==False:
                 while not (Button.CENTER in self.buttons.pressed()):
                     self.screen.clear()
@@ -264,15 +262,13 @@ class Strassengame(EV3Brick):
                     if (int(time.perf_counter()-starttime)>=(tempo)):
                         self.l.tempo=random(1, 200); self.m.tempo=random(1, 200); self.r.tempo=random(1, 200); tempo=randint(4, 8)+int(time.perf_counter()-starttime)
                 foo=self.sel_menu_item(["- Fortfahren -", "- Zum Hauptmenü -"])
-                if foo=0:
+                if foo==0:
                     continue
-                elif foo=1:
+                elif foo==1:
                     self.end_=True
                     self.l.end_=True
                     self.m.end_=True
                     self.r.end_=True
-                    self.beschleuniger.end_=True
-                    self.tempo.end_=True
                 else:
                     pass
         
@@ -281,7 +277,7 @@ class Strassengame(EV3Brick):
             tempo=5
             beschl_=1
             self.poly_beschl(min_polgr=2, max_polgr=5)
-            global starttime=time.perf_counter()
+            starttime=time.perf_counter()
             while self.end_==False:
                 while not (Button.CENTER in self.buttons.pressed()):
                     self.screen.clear()
@@ -296,15 +292,13 @@ class Strassengame(EV3Brick):
                         self.poly_beschl(min_polgr=2, max_polgr=5)
                         beschl_=beschl_+1
                 foo=self.sel_menu_item(["- Fortfahren -", "- Zum Hauptmenü -"])
-                if foo=0:
+                if foo==0:
                     continue
-                elif foo=1:
+                elif foo==1:
                     self.end_=True
                     self.l.end_=True
                     self.m.end_=True
                     self.r.end_=True
-                    self.beschleuniger.end_=True
-                    self.tempo.end_=True
                 else:
                     pass
         
@@ -312,7 +306,7 @@ class Strassengame(EV3Brick):
             beschl=0
             tempo=0
             self.poly_beschl(min_polgr=2, max_polgr=5)
-            global starttime=time.perf_counter()
+            starttime=time.perf_counter()
             while self.end_==False:
                 while not (Button.CENTER in self.buttons.pressed()):
                     self.screen.clear()
@@ -327,15 +321,13 @@ class Strassengame(EV3Brick):
                         self.poly_beschl(min_polgr=2, max_polgr=6)
                         beschl=random.randint(4, 8)+int(time.perf_counter()-starttime)
                 foo=self.sel_menu_item(["- Fortfahren -", "- Zum Hauptmenü -"])
-                if foo=0:
+                if foo==0:
                     continue
-                elif foo=1:
+                elif foo==1:
                     self.end_=True
                     self.l.end_=True
                     self.m.end_=True
                     self.r.end_=True
-                    self.beschleuniger.end_=True
-                    self.tempo.end_=True
                 else:
                     pass
         
@@ -343,7 +335,7 @@ class Strassengame(EV3Brick):
             beschl=0
             temp=0
             self.poly_beschl(min_polgr=2, max_polgr=5)
-            global starttime=time.perf_counter()
+            starttime=time.perf_counter()
             while self.end_==False:
                 while not (Button.CENTER in self.buttons.pressed()):
                     self.screen.clear()
@@ -361,15 +353,13 @@ class Strassengame(EV3Brick):
                 self.m.run_=False
                 self.r.run_=False
                 foo=self.sel_menu_item(["- Fortfahren -", "- Zum Hauptmenü -"])
-                if foo=0:
+                if foo==0:
                     continue
-                elif foo=1:
+                elif foo==1:
                     self.end_=True
                     self.l.end_=True
                     self.m.end_=True
                     self.r.end_=True
-                    self.beschleuniger.end_=True
-                    self.tempo.end_=True
                 else:
                     pass
         
