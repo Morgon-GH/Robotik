@@ -41,7 +41,7 @@ import time
 
 class Strassengame(EV3Brick):
 
-    class Straße(threading.Thread):
+    class Strasse(threading.Thread):
 
         def __init__(self, id="default", port=Port.A, test_=False): ################################################################################################FINE
             threading.Thread.__init__(self)
@@ -56,7 +56,7 @@ class Strassengame(EV3Brick):
             self.run_=True #variable, ob gerade der Motor laufen soll
             self.end_=False #variable, ob beendet werden soll; vorher muss self.run_ auf False gesetzt werden!
             if self.test_==True:
-                print("Straße ist betriebsbereit. ")
+                print("Strasse ist betriebsbereit. ")
 
         def beschleunige_hin(self): ######################################################################################################################FINE
             intime=time.perf_counter()
@@ -78,7 +78,7 @@ class Strassengame(EV3Brick):
         
         def run(self): ######################################################################################################################FINE
             if self.test_==True:
-                print("Thread wurde gestartet, in Kürze wird die Straße wahrscheinlich anfangen zu laufen")
+                print("Thread wurde gestartet, in Kürze wird die Strasse wahrscheinlich anfangen zu laufen")
 
             while True:
                 while self.run_==False:
@@ -92,7 +92,7 @@ class Strassengame(EV3Brick):
                     pass
 
             if self.test_==True:
-                print("Thread wurde beendet. Die Straße wird nun in diesem Thread nicht mehr laufen. ")
+                print("Thread wurde beendet. Die Strasse wird nun in diesem Thread nicht mehr laufen. ")
 
         def run_(self): ######################################################################################################################FINE
             while self.run_=True:
@@ -102,13 +102,13 @@ class Strassengame(EV3Brick):
                     self.mot.hold()
 
     def __init__(self, test_=False): ######################################################################################################################FINE
-        self.l=Straße(id="l", port=Port.A, test_=test_)
-        self.m=Straße(id="m", port=Port.B, test_=test_)
-        self.r=Straße(id="r", port=Port.C, test_=test_)
+        self.l=Strasse(id="l", port=Port.A, test_=test_)
+        self.m=Strasse(id="m", port=Port.B, test_=test_)
+        self.r=Strasse(id="r", port=Port.C, test_=test_)
         self.end_=False
         self.test_=test_
         if self.test_==True:
-            print("Straßengame wurde betriebsfertig gemacht. ")
+            print("Strassengame wurde betriebsfertig gemacht. ")
     
     def sel_menu_item(self, args=[]): ######################################################################################################################FINE
         self.screen.clear()
@@ -133,7 +133,7 @@ class Strassengame(EV3Brick):
              "Das alleine wäre ja langweilig, doch währrend dem Spiel verändert sich deine Geschwindigkeit!",
              "Mit der Zeit wechselt die Geschwindigkeit öfter, schneller und zufälliger!",
              "Durch einen Druck auf die Mittlere Bricktaste kannst du das Spiel unterbrechen, durch einen zweiten Druck beenden."
-             "Lenken kannst du mit dem Lenkrad, aber jetzt viel Spaß dir!"]
+             "Lenken kannst du mit dem Lenkrad, aber jetzt viel Spass dir!"]
         emph=0
         while not (Button.CENTER in self.buttons.pressed()):
             self.screen.clear()
@@ -177,7 +177,7 @@ class Strassengame(EV3Brick):
             print("Teil 3 ist erfolgreich abgelaufen. ")
 
         # Teil 4: CENTER-Abfrage und Spielstart
-        self.screen.draw_text(x=10, y=10, text="Viel Spaß! Drücke den Mittleren Knopf, um fortzufahren. ")
+        self.screen.draw_text(x=10, y=10, text="Viel Spass! Drücke den Mittleren Knopf, um fortzufahren. ")
         while not (Button.CENTER in self.buttons.pressed()):
             pass
         self.screen.clear()
