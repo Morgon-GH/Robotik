@@ -201,6 +201,9 @@ class Strassengame(EV3Brick):
 
         if self.test_=True:
             print("Teil 5 ist erfolgreich gestartet. ")
+        self.l.start()
+        self.r.start()
+        self.m.start()
         self.l.run()
         self.r.run()
         self.m.run()
@@ -219,7 +222,7 @@ class Strassengame(EV3Brick):
             self.l.tempo=random(1, 200)
             self.m.tempo=random(1, 200)
             self.r.tempo=random(1, 200)
-            global starttime=time.perf_counter()
+            starttime=time.perf_counter()
             while self.end_==False:
                 while not (Button.CENTER in self.buttons.pressed()):
                     self.screen.clear()
