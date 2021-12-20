@@ -62,12 +62,12 @@ class Strassengame(EV3Brick):
             intime=time.perf_counter()
             if abs(self.mot.speed)>self.tempo:
                 while self.mot.speed()>self.tempo:
-                    self.mot.run_speed(abs(-self.hinbeschleunigen[6]*(time.perf_counter-intime)**6+self.hinbeschleunigen[5]*(time.perf_counter-intime)**5-self.hinbeschleunigen[4]*(time.perf_counter-intime)**4+self.hinbeschleunigen[3]*(time.perf_counter-intime)**3-self.hinbeschleunigen[2]*(time.perf_counter-intime)**2+self.hinbeschleunigen[1]*(time.perf_counter-intime)**1-self.hinbeschleunigen[0]*(time.perf_counter-intime)**0))
+                    self.mot.run_speed(abs(-self.hinbeschleunigen[6]*(time.perf_counter()-intime)**6+self.hinbeschleunigen[5]*(time.perf_counter()-intime)**5-self.hinbeschleunigen[4]*(time.perf_counter()-intime)**4+self.hinbeschleunigen[3]*(time.perf_counter()-intime)**3-self.hinbeschleunigen[2]*(time.perf_counter()-intime)**2+self.hinbeschleunigen[1]*(time.perf_counter()-intime)**1-self.hinbeschleunigen[0]*(time.perf_counter()-intime)**0))
                     if self.run_==False:
                         self.mot.hold()
             elif abs(self.mot.speed)<self.tempo:
                 while self.mot.speed()<self.tempo:
-                    self.mot.run_speed(abs(self.hinbeschleunigen[6]*(time.perf_counter-intime)**6-self.hinbeschleunigen[5]*(time.perf_counter-intime)**5+self.hinbeschleunigen[4]*(time.perf_counter-intime)**4-self.hinbeschleunigen[3]*(time.perf_counter-intime)**3+self.hinbeschleunigen[2]*(time.perf_counter-intime)**2-self.hinbeschleunigen[1]*(time.perf_counter-intime)**1+self.hinbeschleunigen[0]*(time.perf_counter-intime)**0))
+                    self.mot.run_speed(abs(self.hinbeschleunigen[6]*(time.perf_counter()-intime)**6-self.hinbeschleunigen[5]*(time.perf_counter()-intime)**5+self.hinbeschleunigen[4]*(time.perf_counter()-intime)**4-self.hinbeschleunigen[3]*(time.perf_counter()-intime)**3+self.hinbeschleunigen[2]*(time.perf_counter()-intime)**2-self.hinbeschleunigen[1]*(time.perf_counter()-intime)**1+self.hinbeschleunigen[0]*(time.perf_counter()-intime)**0))
                     if self.run_==False:
                         self.mot.hold()
             elif abs(self.mot.speed())=self.tempo:
