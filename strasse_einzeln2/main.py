@@ -33,20 +33,20 @@ while True:
         while (Button.LEFT in ev3.buttons.pressed()):
             wait(10)
 
-    if Button.LEFT in ev3.buttons.pressed():
+    if Button.DOWN in ev3.buttons.pressed():
         if statusM == 0:
             statusM = 1
         elif statusM == 1:
             statusM = 0
-        while (Button.LEFT in ev3.buttons.pressed()):
+        while (Button.DOWN in ev3.buttons.pressed()):
             wait(10)
 
     if Button.RIGHT in ev3.buttons.pressed():
         if statusR == 0:
             statusR = 1
-        if statusR == 1:
+        elif statusR == 1:
             statusR = 0
-        while (Button.LEFT in ev3.buttons.pressed()):
+        while (Button.RIGHT in ev3.buttons.pressed()):
             wait(10)
 
     if statusL == 1:
@@ -67,6 +67,9 @@ while True:
 
     if Druck.pressed():
         print('druck')
-        ev3.speeker.beep()
+        ev3.speaker.beep()
+        statusL = 0
+        statusM = 0
+        statusR = 0
 
     wait(100)
