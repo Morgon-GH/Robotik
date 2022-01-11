@@ -61,3 +61,6 @@ class Audiofile_jomo(Customclass_jomo):
 
     def play(self):
         ##
+
+        
+# Methoden zum Formatierten Ausgeben auf dem Screen
