@@ -1,0 +1,15 @@
+texte=[["Willkommen! Du willst spielen? Dann bist du hier genau richtig! Druecke den roten Knopf, um fortzufahren.", 
+        "Du hast verloren! Das Auto ist gegen ein Hindernis gedonnert...", 
+        "Aber lass uns doch mal schauen, ob du vielleicht den Highscore geknackt hast!", 
+        "Spiel unterbrechen", 
+        "CENTER zum Fortfahren",
+        "[CENTER]"], #Spielablauf und Fortfahrhinweis
+        ["<Anleitung>", "<Ueber uns>", "<Bestenliste>", "<Spielbeginn>"], #Menu
+        ["Bei diesem Spiel geht es darum, mit dem Auto moeglichst lange den Hindernissen auszuweichen.", #Anleitung
+         "Das alleine waere ja langweilig, doch waehrend dem Spiel veraendert sich deine Geschwindigkeit!", 
+         "Mit der Zeit wechselt die Geschwindigkeit oefter, schneller und zufälliger!, abhängig vom Spielmodus.",
+         "Durch einen Druck auf den roten Knopf kannst du das Spiel unterbrechen, durch einen zweiten Druck fortsetzen.", 
+         "Lenken kannst du mit dem Lenkrad, aber jetzt viel Spass dir!"], 
+        ["Robotik-F Wirsberggymnasium -- Erich, Luca, Johannes, Moritz, Leander und David -- mit Herr Kesselring -- TEAM PLANLOS"], #Credits
+        [""] #Ausgabeoptionen
+]
